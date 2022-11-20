@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayerActivity">
+
+    <Button
+        android:id="@+id/register_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:translationY="100dp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="430dp"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/login_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:translationY="100dp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="-25dp"
+        tools:layout_editor_absoluteY="341dp"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
