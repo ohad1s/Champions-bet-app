@@ -6,25 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".PlayerActivity">
 
-    <Button
-        android:id="@+id/register_player"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:translationY="100dp"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="430dp"
-        tools:visibility="visible" />
+        android:layout_height="match_parent"
+        tools:context=".MangerActivity">
 
-    <Button
-        android:id="@+id/login_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:translationY="100dp"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="-25dp"
-        tools:layout_editor_absoluteY="341dp"
-        tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/login_player"
+            android:layout_width="400dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="20dp"
+            android:text="Login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordPlayer" />
+
+        <Button
+            android:id="@+id/register_player"
+            android:layout_width="400dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="40dp"
+            android:text="Register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_player"
+            app:layout_constraintVertical_bias="0.387" />
+
+        <EditText
+            android:id="@+id/passwordPlayer"
+            android:layout_width="327dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userNamePlayer" />
+
+        <EditText
+            android:id="@+id/userNamePlayer"
+            android:layout_width="325dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="200dp"
+            android:ems="10"
+            android:hint="UserName"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notSing"
+            android:layout_width="266dp"
+            android:layout_height="49dp"
+            android:text="Sing Up?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintBottom_toTopOf="@+id/register_player"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_player" />
 </androidx.constraintlayout.widget.ConstraintLayout>

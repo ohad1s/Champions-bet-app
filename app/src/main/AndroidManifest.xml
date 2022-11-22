@@ -34,13 +34,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivityManger"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.login.LoginActivityManger"
             android:exported="false"
             android:label="@string/title_activity_login_manger" />

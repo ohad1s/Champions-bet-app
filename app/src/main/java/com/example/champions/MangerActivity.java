@@ -15,8 +15,8 @@ public class MangerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manger);
-    login = findViewById(R.id.login_manager);
-    register =findViewById(R.id.register_manager);
+    login = findViewById(R.id.login_player);
+    register =findViewById(R.id.register_player);
     login.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
