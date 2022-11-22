@@ -6,32 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MangerActivity extends AppCompatActivity {
-    private Button login;
-    private Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manger);
-    login = findViewById(R.id.login_player);
-    register =findViewById(R.id.register_player);
-    login.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(MangerActivity.this, LoginActivityManger.class));
-            finish();
-        }
-    });
-    register.setOnClickListener((new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(MangerActivity.this, RegisterActivityManger.class));
-            finish();
-        }
-    }));
 
+    }
+    public void onClickManagerLogin(View view){
+        EditText userName = findViewById(R.id.userNameManager);
+        EditText pass = findViewById(R.id.passwordManager);
+
+        startActivity(new Intent(MangerActivity.this, managerMainPage.class));
+        finish();
+    }
+    public void onClickManagerRegister(View view){
+        startActivity(new Intent(MangerActivity.this, RegisterActivityManger.class));
+        finish();
     }
 
 }

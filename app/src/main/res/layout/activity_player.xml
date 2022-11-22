@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PlayerActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MangerActivity">
-
 
         <Button
             android:id="@+id/login_player"
@@ -21,7 +16,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordPlayer" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordManager" />
 
         <Button
             android:id="@+id/register_player"
@@ -46,7 +41,7 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNamePlayer" />
+            app:layout_constraintTop_toBottomOf="@+id/userNameManager" />
 
         <EditText
             android:id="@+id/userNamePlayer"
@@ -60,14 +55,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/notSing"
-            android:layout_width="266dp"
-            android:layout_height="49dp"
-            android:text="Sing Up?"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            app:layout_constraintBottom_toTopOf="@+id/register_player"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_player" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/notSing"
+        android:layout_width="266dp"
+        android:layout_height="49dp"
+        android:text="Unregistred?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/register_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_player" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
