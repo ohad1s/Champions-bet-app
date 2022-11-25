@@ -7,7 +7,7 @@
     tools:context=".MangerActivity">
 
     <Button
-        android:id="@+id/login_player"
+        android:id="@+id/login_manager"
         android:layout_width="400dp"
         android:layout_height="75dp"
         android:layout_marginTop="20dp"
