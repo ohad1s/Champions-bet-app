@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,62 +7,53 @@
     tools:context=".PlayerActivity">
 
 
-        <Button
-            android:id="@+id/login_player"
-            android:layout_width="400dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="20dp"
-            android:text="Login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordManager" />
+    <Button
+        android:id="@+id/login_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickPlayerLogin"
+        android:text="Login"
+        android:layout_below="@+id/passwordPlayer" />
 
-        <Button
-            android:id="@+id/register_player"
-            android:layout_width="400dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="40dp"
-            android:text="Register"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_player"
-            app:layout_constraintVertical_bias="0.387" />
+    <Button
+        android:id="@+id/register_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickPlayerRegister"
+        android:text="Register"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/Unregistred"
+        />
 
-        <EditText
-            android:id="@+id/passwordPlayer"
-            android:layout_width="327dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameManager" />
+    <EditText
+        android:id="@+id/passwordPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/userNamePlayer"
+        android:layout_marginTop="10dp"/>
 
-        <EditText
-            android:id="@+id/userNamePlayer"
-            android:layout_width="325dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="200dp"
-            android:ems="10"
-            android:hint="UserName"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/userNamePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        />
 
     <TextView
-        android:id="@+id/notSing"
-        android:layout_width="266dp"
-        android:layout_height="49dp"
+        android:id="@+id/Unregistred"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Unregistred?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/register_player"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_player" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/login_player" />
+</RelativeLayout>
