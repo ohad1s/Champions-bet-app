@@ -6,13 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".managerMainPage">
 
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcomeManager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_centerHorizontal="true"
+        android:text="Welcome Manager!"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/JoinBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeManager"
+        android:layout_marginTop="20dp"
+        android:text="+ Join a New Competition +"
         android:layout_centerVertical="true"
-        android:textSize="50dp"/>
+        />
+
+    <Button
+        android:id="@+id/CreateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/JoinBtn"
+        android:layout_marginTop="20dp"
+        android:text="+ Create a New Competition +"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/MyComp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Competitions:"
+        android:layout_below="@+id/CreateBtn"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+
+
+
 </RelativeLayout>
