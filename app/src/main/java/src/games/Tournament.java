@@ -1,12 +1,23 @@
 package src.games;
 
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Tournament {
-    ArrayList<Game> games;
+    private String name;
+    private  String code;
+    private User manager;
+    private Date start, end;
+    private  List<Game> games;
+    private  List<User> participants;
 
 
     public Tournament() {
-        this.games = new ArrayList<Game>();
+        games = new ArrayList<Game>();
+        participants = new ArrayList<User>();
     }
+
+
 }

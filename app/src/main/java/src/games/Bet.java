@@ -1,9 +1,5 @@
 package src.games;
 
-import java.time.LocalDateTime;
-
-import src.participants.User;
-
 public class Bet {
     int game_id;
     int home_score;
