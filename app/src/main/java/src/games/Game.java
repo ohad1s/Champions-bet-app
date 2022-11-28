@@ -4,22 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Game {
-    int id;
-    String home;
-    String away;
+    Team home;
+    Team away;
     int home_score;
     int away_score;
-    int points;
     Date final_date;
     ArrayList<Bet>bets;
 
-    public Game(int id,String home, String away, int p, Date fd){
-        this.id =id;
+    public Game(Team home, Team away, Date fd) {
         this.home=home;
         this.away=away;
-        this.points=p;
-        this.away_score=-1;
-        this.home_score=-1;
+        this.away_score=0;
+        this.home_score=0;
         this.final_date=fd;
         bets= new ArrayList<Bet>();
     }
