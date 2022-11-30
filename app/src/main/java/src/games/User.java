@@ -58,4 +58,14 @@ public class User {
     public void setUserBets(List<Bet> userBets) {
         this.userBets = userBets;
     }
+
+    public HashMap<String, Object> toHashMap(){
+        HashMap<String, Object> toReturn = new HashMap<>();
+        toReturn.put("email", email);
+        toReturn.put("nickname", nickname);
+        toReturn.put("password", password);
+        toReturn.put("myTournaments", myTournaments);
+        toReturn.put("userBets", userBets);
+        return toReturn;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.champions;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,14 +15,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterActivityPlayer extends AppCompatActivity {
+public class PlayerRegisterActivity extends AppCompatActivity {
     private Button register;
     public FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_player);
+        setContentView(R.layout.activity_player_register);
         EditText email = findViewById(R.id.regEmailPlayer);
         EditText password = findViewById(R.id.regPasswordPlayer);
         register = findViewById(R.id.register_player_2);
@@ -32,9 +33,9 @@ public class RegisterActivityPlayer extends AppCompatActivity {
                 String text_email = email.getText().toString();
                 String text_password = password.getText().toString();
                 if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)) {
-                    Toast.makeText(RegisterActivityPlayer.this, "Empty credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayerRegisterActivity.this, "Empty credentials", Toast.LENGTH_SHORT).show();
                 } else if (text_password.length() < 6) {
-                    Toast.makeText(RegisterActivityPlayer.this, "Password too short", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayerRegisterActivity.this, "Password too short", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(text_email, text_password);
 //            System.out.println(text_email + ", " + text_password);
@@ -48,9 +49,10 @@ public class RegisterActivityPlayer extends AppCompatActivity {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(RegisterActivityPlayer.this, "Register successful!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayerRegisterActivity.this, "Register successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PlayerRegisterActivity.this, PlayerLoginActivity.class));
                 } else {
-                    Toast.makeText(RegisterActivityPlayer.this, "Register failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayerRegisterActivity.this, "Register failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

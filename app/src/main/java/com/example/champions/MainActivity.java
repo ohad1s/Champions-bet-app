@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickManager(View view){
-        startActivity(new Intent(MainActivity.this, MangerActivity.class));
+        startActivity(new Intent(MainActivity.this, MangerLoginActivity.class));
         finish();
     }
     public void onClickPlayer(View view){
-        startActivity(new Intent(MainActivity.this, PlayerActivity.class));
+        startActivity(new Intent(MainActivity.this, PlayerLoginActivity.class));
         finish();
     }
 }

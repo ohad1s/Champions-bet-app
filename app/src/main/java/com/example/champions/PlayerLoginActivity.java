@@ -13,14 +13,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerLoginActivity extends AppCompatActivity {
     private Button login;
     public FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
+        setContentView(R.layout.activity_player_login);
         EditText email = findViewById(R.id.userNamePlayer);
         EditText password = findViewById(R.id.passwordPlayer);
         login = findViewById(R.id.login_player);
@@ -39,15 +39,15 @@ public class PlayerActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(text_email, text_password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(PlayerActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(PlayerActivity.this, PlayerMainPage.class));
+                Toast.makeText(PlayerLoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(PlayerLoginActivity.this, PlayerMainActivity.class));
                 finish();
             }
         });
     }
 
     public void onClickPlayerRegister(View view) {
-        startActivity(new Intent(PlayerActivity.this, RegisterActivityPlayer.class));
+        startActivity(new Intent(PlayerLoginActivity.this, PlayerRegisterActivity.class));
         finish();
     }
 }

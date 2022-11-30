@@ -20,42 +20,42 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PlayerMainPage"
+            android:name=".PlayerMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivityPlayer"
+            android:name=".PlayerRegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".managerMainPage"
+            android:name=".ManagerMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PlayerActivity"
+            android:name=".PlayerLoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MangerActivity"
+            android:name=".MangerLoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivityManger"
+            android:name=".ManagerRegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
