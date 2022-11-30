@@ -26,7 +26,6 @@
         android:layout_below="@+id/manager"
         android:layout_marginTop="30dp" />
 
-
     <TextView
         android:id="@+id/Log_As"
         android:layout_width="wrap_content"

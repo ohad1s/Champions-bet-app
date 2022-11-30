@@ -20,6 +20,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, PlayerActivity.class));
         finish();
     }
-
-
 }
