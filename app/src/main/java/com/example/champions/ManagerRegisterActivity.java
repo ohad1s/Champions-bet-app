@@ -21,9 +21,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import kotlin.jvm.internal.Ref;
+import src.games.Bet;
+import src.games.Game;
+import src.games.Team;
 import src.games.User;
 
 public class ManagerRegisterActivity extends AppCompatActivity {
@@ -88,32 +95,19 @@ public class ManagerRegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                // inside the method of on Data change we are setting
-//                // our object class to our database reference.
-//                // data base reference will sends data to firebase.
-//                databaseReference.setValue(user);
-//
-//                // after adding this data we are showing toast message.
-//                Toast.makeText(ManagerRegisterActivity.this, "data added", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                // if the data is not added or it is cancelled then
-//                // we are displaying a failure toast message.
-//                Toast.makeText(ManagerRegisterActivity.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        databaseReference.setValue("hello");
-
-//        Toast.makeText(ManagerRegisterActivity.this, "I am PO!", Toast.LENGTH_SHORT).show();
     }
     public void addUserToDB(String email, String password, String nickname) {
         User user = new User(email, password, nickname);
-        firebaseDatabase.getReference().child("users").child("managers").updateChildren(user.toHashMap());
+        Date date = new Date(System.currentTimeMillis());
+        Team team = new Team();
+        Game game = new Game(team, team, date);
+        Bet bet = new Bet(user, 0, 0, game);
+        ArrayList<Bet> list = new ArrayList<Bet>();
+        list.add(bet);
+        user.setUserBets(list);
+        firebaseDatabase.getReference().child("users").updateChildren(user.toHashMap());
+//        Map temp = new HashMap<String, String>();
+//        temp.put("Itamar", "King");
+//        firebaseDatabase.getReference("Itamar/Itamar/Dvir").child("Dvir Gev").updateChildren(temp);
     }
 }
