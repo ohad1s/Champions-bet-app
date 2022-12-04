@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class ManagerRegisterActivity extends AppCompatActivity {
     private Button register;
     public FirebaseAuth auth;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    FirebaseFirestore firebaseDatabase;
+//    DatabaseReference databaseReference;
 
 
     @Override
@@ -52,8 +53,10 @@ public class ManagerRegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.register_manager_2);
         auth = FirebaseAuth.getInstance();
 
-        firebaseDatabase = FirebaseDatabase.getInstance("https://champions-f121f-default-rtdb.europe-west1.firebasedatabase.app/");
-        databaseReference = firebaseDatabase.getReference();
+        firebaseDatabase = FirebaseFirestore.getInstance();
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        databaseReference = firebaseDatabase.getReference();
+
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -98,14 +101,15 @@ public class ManagerRegisterActivity extends AppCompatActivity {
     }
     public void addUserToDB(String email, String password, String nickname) {
         User user = new User(email, password, nickname);
-        Date date = new Date(System.currentTimeMillis());
-        Team team = new Team();
-        Game game = new Game(team, team, date);
-        Bet bet = new Bet(user, 0, 0, game);
-        ArrayList<Bet> list = new ArrayList<Bet>();
-        list.add(bet);
-        user.setUserBets(list);
-        firebaseDatabase.getReference().child("users").updateChildren(user.toHashMap());
+//        Date date = new Date(System.currentTimeMillis());
+//        Team team = new Team();
+//        Game game = new Game(team, team, date);
+//        Bet bet = new Bet(user, 0, 0, game);
+//        ArrayList<Bet> list = new ArrayList<Bet>();
+//        list.add(bet);
+//        user.setUserBets(list);
+        firebaseDatabase.collection("users").add(user.toHashMap());
+//        firebaseDatabase.getReference().child("users").updateChildren(user.toHashMap());
 //        Map temp = new HashMap<String, String>();
 //        temp.put("Itamar", "King");
 //        firebaseDatabase.getReference("Itamar/Itamar/Dvir").child("Dvir Gev").updateChildren(temp);
