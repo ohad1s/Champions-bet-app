@@ -1,32 +1,41 @@
 package com.example.champions;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import kotlin.jvm.internal.Ref;
 import src.games.Bet;
@@ -40,7 +49,6 @@ public class ManagerRegisterActivity extends AppCompatActivity {
     public FirebaseAuth auth;
 
     FirebaseFirestore firebaseDatabase;
-//    DatabaseReference databaseReference;
 
 
     @Override
@@ -52,11 +60,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
         EditText password = findViewById(R.id.regPasswordManager);
         register = findViewById(R.id.register_manager_2);
         auth = FirebaseAuth.getInstance();
-
         firebaseDatabase = FirebaseFirestore.getInstance();
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference();
-
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +78,6 @@ public class ManagerRegisterActivity extends AppCompatActivity {
                     Intent toManagerLogin = new Intent(ManagerRegisterActivity.this, MangerLoginActivity.class);
                     startActivity(toManagerLogin);
                     finish();
-
-//                    User user = new User(text_email, text_password, "nickname");
-//                    firebaseDatabase.getReference().child("users").child("managers").updateChildren(user.toHashMap());
-
-//            System.out.println(text_email + ", " + text_password);
                 }
             }
         });
@@ -92,26 +91,32 @@ public class ManagerRegisterActivity extends AppCompatActivity {
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ManagerRegisterActivity.this, "Register successful!", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(ManagerRegisterActivity.this, "Register failed!", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
+//        String userid = FirebaseAuth.getInstance().getCurrentUser().toString();
+//        return userid;
     }
     public void addUserToDB(String email, String password, String nickname) {
-//        User user = new User(email, password, nickname);
-//        Date date = new Date(System.currentTimeMillis());
-//        Team team = new Team();
-//        Game game = new Game(team, team, date);
-//        Bet bet = new Bet(user, 0, 0, game);
-//        ArrayList<Bet> list = new ArrayList<Bet>();
-//        list.add(bet);
-//        user.setUserBets(list);
-//        firebaseDatabase.collection("users").add(user.toHashMap());
-//        firebaseDatabase.getReference().child("users").updateChildren(user.toHashMap());
-//        Map temp = new HashMap<String, String>();
-//        temp.put("Itamar", "King");
-//        firebaseDatabase.getReference("Itamar/Itamar/Dvir").child("Dvir Gev").updateChildren(temp);
+        FirebaseUser userid = FirebaseAuth.getInstance().updateCurrentUser();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        User user = new User(userid.getUid(), email, password, nickname);
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user.toHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(ManagerRegisterActivity.this, "add succees", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }
