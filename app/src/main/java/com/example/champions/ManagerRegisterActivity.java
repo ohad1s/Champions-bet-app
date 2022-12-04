@@ -100,7 +100,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
         });
     }
     public void addUserToDB(String email, String password, String nickname) {
-        User user = new User(email, password, nickname);
+//        User user = new User(email, password, nickname);
 //        Date date = new Date(System.currentTimeMillis());
 //        Team team = new Team();
 //        Game game = new Game(team, team, date);
@@ -108,7 +108,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
 //        ArrayList<Bet> list = new ArrayList<Bet>();
 //        list.add(bet);
 //        user.setUserBets(list);
-        firebaseDatabase.collection("users").add(user.toHashMap());
+//        firebaseDatabase.collection("users").add(user.toHashMap());
 //        firebaseDatabase.getReference().child("users").updateChildren(user.toHashMap());
 //        Map temp = new HashMap<String, String>();
 //        temp.put("Itamar", "King");

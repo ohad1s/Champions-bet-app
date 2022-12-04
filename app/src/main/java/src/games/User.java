@@ -5,13 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class User {
+    private String userID;
     private String email;
     private String password;
     private String nickname;
     private List<Tournament> myTournaments;
     private List<Bet> userBets;
 
-    public User(String email ,String password, String nickname){
+    public User(String userID, String email ,String password, String nickname){
+        this.userID = userID;
         this.email=email;
         this.nickname=nickname;
         this.password=password;
@@ -51,6 +53,13 @@ public class User {
         this.myTournaments = myTournaments;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 //    public List<Bet> getUserBets() {
 //        return userBets;
 //    }
@@ -61,11 +70,15 @@ public class User {
 
     public HashMap<String, Object> toHashMap(){
         HashMap<String, Object> toReturn = new HashMap<>();
+        toReturn.put("userID", userID);
         toReturn.put("email", email);
         toReturn.put("nickname", nickname);
         toReturn.put("password", password);
-        toReturn.put("myTournaments", myTournaments);
-        toReturn.put("userBets", userBets);
+        toReturn.put("myTournaments", myTournaments.toString());
+        toReturn.put("userBets", userBets.toString());
         return toReturn;
+    }
+    public String toString() {
+        return userID;
     }
 }
