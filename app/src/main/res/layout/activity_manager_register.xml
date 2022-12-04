@@ -22,12 +22,20 @@
         android:layout_marginTop="10dp"
         android:hint="Password"
         android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/regNicknameManager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/regPasswordManager"
+        android:layout_marginTop="10dp"
+        android:hint="Nickname"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"/>
 
     <Button
         android:id="@+id/register_manager_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/regPasswordManager"
+        android:layout_below="@+id/regNicknameManager"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"

@@ -38,6 +38,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
 
         EditText email = findViewById(R.id.regEmailManager);
         EditText password = findViewById(R.id.regPasswordManager);
+        EditText nickname = findViewById(R.id.regNicknameManager);
         register = findViewById(R.id.register_manager_2);
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseFirestore.getInstance();
@@ -48,13 +49,13 @@ public class ManagerRegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String text_email = email.getText().toString();
                 String text_password = password.getText().toString();
-                if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)) {
+                String text_nickname = nickname.getText().toString();
+                if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password) || TextUtils.isEmpty(text_nickname)) {
                     Toast.makeText(ManagerRegisterActivity.this, "Empty credentials", Toast.LENGTH_SHORT).show();
                 } else if (text_password.length() < 6) {
                     Toast.makeText(ManagerRegisterActivity.this, "Password too short", Toast.LENGTH_SHORT).show();
                 } else {
-                    System.out.println("dsfdsfdsfdsfsdf");
-                    registerUser(text_email, text_password);
+                    registerUser(text_email, text_password, text_nickname);
 //                    Intent toManagerLogin = new Intent(ManagerRegisterActivity.this, MangerLoginActivity.class);
 //                    startActivity(toManagerLogin);
 //                    finish();
@@ -65,7 +66,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
     }
 
 
-    private void registerUser(String text_email, String text_password) {
+    private void registerUser(String text_email, String text_password, String text_nickname) {
         auth.createUserWithEmailAndPassword(text_email, text_password).addOnCompleteListener(   this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -74,7 +75,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
                     String userid =  auth.getUid();
                     Log.d(TAG, auth.getUid());
-                    addUserToDB(userid, text_email, text_password, "dvirr");
+                    addUserToDB(userid, text_email, text_password, text_nickname);
                     Toast.makeText(ManagerRegisterActivity.this, "Register successful!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ManagerRegisterActivity.this, "Register failed!", Toast.LENGTH_SHORT).show();
@@ -91,6 +92,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ManagerRegisterActivity.this, "add succees", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ManagerRegisterActivity.this, ManagerMainActivity.class));
                 }
             }
         });
