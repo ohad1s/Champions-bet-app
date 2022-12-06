@@ -22,8 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="Tournament Name"
-        android:layout_below="@id/createNewTournament"
-        android:inputType="textEmailAddress" />
+        android:layout_below="@id/createNewTournament" />
 
     <TextView
         android:id="@+id/addGame"
@@ -43,16 +42,14 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="Home team"
-        android:layout_below="@id/addGame"
-        android:inputType="textEmailAddress" />
+        android:layout_below="@id/addGame" />
     <EditText
         android:id="@+id/wayTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/homeTeam"
         android:layout_marginTop="10dp"
-        android:hint="wayTeam"
-        android:inputType="textPassword" />
+        android:hint="wayTeam" />
     <EditText
         android:id="@+id/finalDate"
         android:layout_width="match_parent"
@@ -71,7 +68,18 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:onClick="onClicAddGameButton"
+        android:onClick="onClickAddGameButton"
         android:text="Add Game" />
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addGameButton"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:onClick="onClickDoneButton"
+        android:text="Done!" />
 
 </RelativeLayout>

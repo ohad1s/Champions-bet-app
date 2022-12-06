@@ -23,6 +23,7 @@ public class Tournament {
         this.games = new ArrayList<>();
         this.participants = new ArrayList<>();
     }
+    public Tournament() {}
 
     public String getTournamentID() {
         return tournamentID;
@@ -79,6 +80,7 @@ public class Tournament {
     public void setParticipants(List<User> participants) {
         this.participants = participants;
     }
+
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> toReturn = new HashMap<>();
         toReturn.put("tournamentID", tournamentID);
