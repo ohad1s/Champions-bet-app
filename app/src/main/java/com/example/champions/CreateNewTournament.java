@@ -22,7 +22,7 @@ import src.games.User;
 
 public class CreateNewTournament extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase;
-    private User user;
+    protected User user;
     private Tournament tournament;
 
     private EditText tournamentName;
