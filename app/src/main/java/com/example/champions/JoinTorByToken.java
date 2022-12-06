@@ -18,7 +18,7 @@ import java.util.Date;
 import src.games.Tournament;
 import src.games.User;
 
-public class JoinTorByToken extends CreateNewTournament {
+public class JoinTorByToken extends ManagerMainActivity {
     private FirebaseFirestore firebaseDatabase;
     private EditText Token;
 

@@ -20,7 +20,7 @@ import src.games.User;
 
 public class ManagerMainActivity extends AppCompatActivity {
     private Button createANewTournament;
-    private User user;
+    protected User user;
     private FirebaseFirestore firebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,5 +58,9 @@ public class ManagerMainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    public void onJoinButton(){
+        startActivity(new Intent(this, JoinTorByToken.class));
+        finish();
     }
 }
