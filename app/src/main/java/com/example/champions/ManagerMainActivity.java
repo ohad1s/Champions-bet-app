@@ -61,6 +61,5 @@ public class ManagerMainActivity extends AppCompatActivity {
     }
     public void onJoinButton(){
         startActivity(new Intent(this, JoinTorByToken.class));
-        finish();
     }
 }
