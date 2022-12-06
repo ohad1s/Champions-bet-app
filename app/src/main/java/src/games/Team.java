@@ -12,13 +12,13 @@ public class Team {
     private ImageView image;
     private List<Game> historyGames;
 
-    public Team(String teamID, String name, ImageView image) {
+    public Team(String teamID, String name /*ImageView image*/) {
         this.teamID = teamID;
         this.name = name;
-        this.image = image;
+        //this.image = image;
         this.historyGames = new ArrayList<Game>();
     }
-
+    public Team(){}
     public String getTeamID() {
         return teamID;
     }

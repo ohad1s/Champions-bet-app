@@ -3,16 +3,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManagerMainActivity">
+    tools:context=".CreateNewTournament">
 
     <TextView
-        android:id="@+id/NewTournament"
+        android:id="@+id/createNewTournament"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Tournament"
+        android:text="Create New Tournament"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/tournamentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="Tournament Name"
+        android:layout_below="@id/createNewTournament"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/addGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Game"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@id/tournamentName"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/homeTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="Home team"
+        android:layout_below="@id/addGame"
+        android:inputType="textEmailAddress" />
+    <EditText
+        android:id="@+id/wayTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homeTeam"
+        android:layout_marginTop="10dp"
+        android:hint="wayTeam"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/finalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wayTeam"
+        android:layout_marginTop="10dp"
+        android:hint="Final Date"
+        android:inputType="date"/>
+
+    <Button
+        android:id="@+id/addGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finalDate"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:onClick="onClicAddGameButton"
+        android:text="Add Game" />
+
 </RelativeLayout>

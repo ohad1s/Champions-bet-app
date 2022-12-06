@@ -19,6 +19,7 @@ public class Game {
         this.home_score=0;
         this.final_date=fd;
     }
+    public Game(){}
 
     public String getGameID() {
         return gameID;

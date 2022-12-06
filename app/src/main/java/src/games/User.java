@@ -24,8 +24,6 @@ public class User {
         this.userBets = new ArrayList<Bet>();
     }
     public User() {
-        this.myTournaments = new ArrayList<Tournament>();
-        this.userBets = new ArrayList<Bet>();
     }
 
     public String getUserID() {

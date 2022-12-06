@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,23 +32,30 @@ public class ManagerMainActivity extends AppCompatActivity {
         String userId = "hello"; // or other values
         if(b != null)
             userId = b.getString("userid");
-        Log.d("STATE", userId);
-        Toast.makeText(ManagerMainActivity.this, userId, Toast.LENGTH_SHORT).show();
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
-                Toast.makeText(ManagerMainActivity.this, user.getNickname(), Toast.LENGTH_SHORT).show();
-                Log.d("STATE", user.getNickname());
+                afteronCreate();
             }
         });
+    }
+    public void afteronCreate() {
+        TextView textView = (TextView) findViewById(R.id.welcomeManager);
+        textView.setText("Welcome " + user.getNickname() + "!");
+
 
         createANewTournament = findViewById(R.id.CreateBtn);
         createANewTournament.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ManagerMainActivity.this, CreateNewTournament.class));
+                Intent intent = new Intent(ManagerMainActivity.this, CreateNewTournament.class);
+                Bundle b = new Bundle();
+                b.putString("userid", user.getUserID()); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
             }
         });
     }
