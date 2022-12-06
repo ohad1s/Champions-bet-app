@@ -87,12 +87,18 @@ public class ManagerRegisterActivity extends AppCompatActivity {
     }
     public void addUserToDB(String userid, String email, String password, String nickname) {
         User user = new User(userid, email, password, nickname);
-        firebaseDatabase.collection("users").document(user.getUserID()).set(user.toHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//        firebaseDatabase.collection("users").document(user.getUserID()).set(user.toHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ManagerRegisterActivity.this, "add succees", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ManagerRegisterActivity.this, ManagerMainActivity.class));
+                    Intent intent = new Intent(ManagerRegisterActivity.this, ManagerMainActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("userid", userid); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

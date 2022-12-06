@@ -45,7 +45,12 @@ public class MangerLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(MangerLoginActivity.this,"Login successful!", Toast.LENGTH_SHORT ).show();
-                    startActivity(new Intent(MangerLoginActivity.this, ManagerMainActivity.class));
+                    Intent intent = new Intent(MangerLoginActivity.this, ManagerMainActivity.class);
+                    String userid =  auth.getUid();
+                    Bundle b = new Bundle();
+                    b.putString("userid", userid); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(MangerLoginActivity.this,"Invalid Username Or Password!", Toast.LENGTH_SHORT ).show();

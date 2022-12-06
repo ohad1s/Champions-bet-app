@@ -1,5 +1,8 @@
 package src.games;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +22,18 @@ public class User {
         this.password=password;
         this.myTournaments = new ArrayList<Tournament>();
         this.userBets = new ArrayList<Bet>();
+    }
+    public User() {
+        this.myTournaments = new ArrayList<Tournament>();
+        this.userBets = new ArrayList<Bet>();
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getEmail() {
@@ -45,24 +60,17 @@ public class User {
         this.nickname = nickname;
     }
 
-//    public List<Tournament> getMyTournaments() {
-//        return myTournaments;
-//    }
+    public List<Tournament> getMyTournaments() {
+        return myTournaments;
+    }
 
     public void setMyTournaments(List<Tournament> myTournaments) {
         this.myTournaments = myTournaments;
     }
 
-    public String getUserID() {
-        return userID;
+    public List<Bet> getUserBets() {
+        return userBets;
     }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-//    public List<Bet> getUserBets() {
-//        return userBets;
-//    }
 
     public void setUserBets(List<Bet> userBets) {
         this.userBets = userBets;
