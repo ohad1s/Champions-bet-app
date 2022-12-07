@@ -1,29 +1,42 @@
 package src.games;
 
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.example.champions.CreateNewTournament;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 public class Tournament {
+    private FirebaseFirestore firebaseDatabase;
     private String tournamentID;
     private String name;
-    private User manager;
+    private String managerID;
     private Date start, end;
     private  List<Game> games;
     private  List<User> participants;
 
-    public Tournament(String tournamentID, String name, User manager, Date start, Date end) {
+    public Tournament(String tournamentID, String name, String manager, Date start, Date end) {
+        this();
         this.tournamentID = tournamentID;
         this.name = name;
-        this.manager = manager;
+        this.managerID = manager;
         this.start = start;
         this.end = end;
         this.games = new ArrayList<>();
         this.participants = new ArrayList<>();
     }
-    public Tournament() {}
+    public Tournament() {
+
+    }
 
     public String getTournamentID() {
         return tournamentID;
@@ -41,12 +54,12 @@ public class Tournament {
         this.name = name;
     }
 
-    public User getManager() {
-        return manager;
+    public String getManagerID() {
+        return managerID;
     }
 
-    public void setManager(User manager) {
-        this.manager = manager;
+    public void setManager(String managerID) {
+        this.managerID = managerID;
     }
 
     public Date getStart() {
@@ -85,7 +98,7 @@ public class Tournament {
         HashMap<String, Object> toReturn = new HashMap<>();
         toReturn.put("tournamentID", tournamentID);
         toReturn.put("name", name);
-        toReturn.put("manager", manager.getUserID());
+        toReturn.put("manager", managerID);
         toReturn.put("start", start);
         toReturn.put("end", end);
         toReturn.put("participants", participants.toString());
@@ -95,4 +108,5 @@ public class Tournament {
     public String toString() {
         return tournamentID;
     }
+
 }

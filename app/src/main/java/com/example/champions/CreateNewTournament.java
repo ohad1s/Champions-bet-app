@@ -3,6 +3,7 @@ package com.example.champions;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -59,7 +60,7 @@ public class CreateNewTournament extends AppCompatActivity {
     }
     public void afterOnCreate() {
         String tournamentID = user.getUserID() + "/" + user.getMyTournaments().size();
-        tournament = new Tournament(tournamentID, "name",user,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
+        tournament = new Tournament(tournamentID, "name",user.getUserID(),new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
     }
 
     public void onClickAddGameButton(View view) throws ParseException {
@@ -80,8 +81,9 @@ public class CreateNewTournament extends AppCompatActivity {
         addToDB(home, way, newGame);
 
     }
-    public void addToDB(Team home, Team way, Game game) {
-        firebaseDatabase.collection("teams").document(home.getTeamID()).set(home).addOnCompleteListener(new OnCompleteListener<Void>() {
+    public void onClickDoneButton(View view) throws ParseException{
+        user.getMyTournaments().add(tournament);
+        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -89,7 +91,23 @@ public class CreateNewTournament extends AppCompatActivity {
                 }
             }
         });
-        firebaseDatabase.collection("teams").document(way.getTeamID()).set(way).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateNewTournament.this, ManagerMainActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("userid", user.getUserID()); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+    }
+    public void addToDB(Team home, Team way, Game game) {
+        firebaseDatabase.collection("teams").document(home.getTeamID()).set(home).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -113,19 +131,6 @@ public class CreateNewTournament extends AppCompatActivity {
                 }
             }
         });
-        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    public void onClickDoneButton(View view) {
-        user.getMyTournaments().add(tournament);
-        firebaseDatabase = FirebaseFirestore.getInstance();
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
