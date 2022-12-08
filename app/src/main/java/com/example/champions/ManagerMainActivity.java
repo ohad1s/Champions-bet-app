@@ -1,7 +1,6 @@
 package com.example.champions;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,25 +9,24 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.List;
-
 import src.games.Tournament;
 import src.games.User;
-
+/**
+ * This java class charge the home page manager
+ * show the tournament you manage
+ * create a new tournament
+ */
 public class ManagerMainActivity extends AppCompatActivity {
-    private Button createANewTournament;
-    protected User user;
-    private FirebaseFirestore firebaseDatabase;
-    int TournamentImg[] = {R.drawable.tournament_image};
-    ListView listView;
+    private Button createANewTournament; // bottom to create a new tournament
+    protected User user; // the user is connected
+    private FirebaseFirestore firebaseDatabase; // the data base we work on
+    int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
+    ListView listView; // list view of tournament
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
