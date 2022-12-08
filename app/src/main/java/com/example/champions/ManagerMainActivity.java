@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +18,17 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
+
+import src.games.Tournament;
 import src.games.User;
 
 public class ManagerMainActivity extends AppCompatActivity {
     private Button createANewTournament;
     protected User user;
     private FirebaseFirestore firebaseDatabase;
+    int TournamentImg[] = {R.drawable.tournament_image};
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,16 @@ public class ManagerMainActivity extends AppCompatActivity {
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                 finish();
+            }
+        });
+        List<Tournament> user_tournament = user.getMyTournaments();
+        listView = (ListView) findViewById(R.id.MyTournamentListView);
+        TournamentMangerBaseAdapter tournamentMangerBaseAdapter = new TournamentMangerBaseAdapter(getApplicationContext(), user_tournament, TournamentImg);
+        listView.setAdapter(tournamentMangerBaseAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
             }
         });
     }

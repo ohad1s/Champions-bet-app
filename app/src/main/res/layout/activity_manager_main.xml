@@ -50,6 +50,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_centerHorizontal="true"/>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MyComp"
+        android:layout_marginTop="20dp"
+        android:divider="@color/black"
+        android:dividerHeight="2dp"
+        android:listSelector="@color/purple_200"
+        android:id="@+id/MyTournamentListView"
+        android:layout_marginBottom="40dp" />
 
 
 </RelativeLayout>
