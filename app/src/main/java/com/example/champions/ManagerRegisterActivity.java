@@ -93,6 +93,7 @@ public class ManagerRegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ManagerRegisterActivity.this, "add succees", Toast.LENGTH_SHORT).show();
+                    //send userID
                     Intent intent = new Intent(ManagerRegisterActivity.this, ManagerMainActivity.class);
                     Bundle b = new Bundle();
                     b.putString("userid", userid); //Your id
