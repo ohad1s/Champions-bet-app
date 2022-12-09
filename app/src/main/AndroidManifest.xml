@@ -16,6 +16,20 @@
         android:theme="@style/Theme.Champions"
         tools:targetApi="31">
         <activity
+            android:name=".games_list_view"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity_game_list_view"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".manager_tournaments_list_view"
             android:exported="false">
             <meta-data
