@@ -3,6 +3,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+
 /**
  * This java class charge the main activity and to chose how you want to enter the app
  * as a manager/user
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView logoImage= (ImageView) findViewById(R.id.logo);
+        logoImage.setImageResource(R.drawable.logo_Champions);
     }
     /**
      * When you click this bottom you pass to the manager main activity

@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/logo"
+    android:src="@drawable/logo_Champions"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_marginTop="20dp"
+    />
+
     <Button
         android:id="@+id/manager"
         android:layout_width="match_parent"
@@ -37,5 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        tools:text="Log As:"/>
+        tools:text="Log As:"
+        android:layout_below="@+id/logo"/>
+
 </RelativeLayout>

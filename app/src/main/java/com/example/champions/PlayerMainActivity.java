@@ -57,7 +57,7 @@ public class PlayerMainActivity extends AppCompatActivity {
         textView.setText("Welcome " + user.getNickname() + "!");
 
 
-        createANewTournament = findViewById(R.id.CreateBtn);
+        createANewTournament = findViewById(R.id.JoinBtn);
         createANewTournament.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
