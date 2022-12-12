@@ -50,13 +50,15 @@
         android:layout_below="@id/homeTeam"
         android:layout_marginTop="10dp"
         android:hint="wayTeam" />
-    <EditText
+    <Button
         android:id="@+id/finalDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wayTeam"
         android:layout_marginTop="10dp"
-        android:hint="Final Date"
+        android:text="JAN 01 2020"
+        android:textSize="30dp"
+        android:onClick="openDatePicker"
         android:inputType="date"/>
 
     <Button
