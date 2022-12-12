@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView logoImage= (ImageView) findViewById(R.id.logo);
-        logoImage.setImageResource(R.drawable.logo_Champions);
+//        ImageView logoImage= (ImageView) findViewById(R.id.logo);
+//        logoImage.setImageResource(R.drawable.logo_champions);
     }
     /**
      * When you click this bottom you pass to the manager main activity
