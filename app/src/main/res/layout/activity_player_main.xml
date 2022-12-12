@@ -7,31 +7,48 @@
     tools:context=".PlayerMainActivity">
 
     <TextView
-        android:id="@+id/HelloPlayer"
+        android:id="@+id/welcomePlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:text="Welcome "
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="Hello *Player* welcome back"
-        android:textSize="25dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/joinBotton"
+        android:id="@+id/JoinBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomePlayer"
+        android:layout_marginTop="20dp"
+        android:text="+ Join a New Competition +"
+        android:layout_centerVertical="true"
+        android:onClick="onJoinButton"
+        />
+    <TextView
+        android:id="@+id/MyComp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/HelloPlayer"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="2dp"
-        android:text="JOIN new Group" />
+        android:text="My Competitions:"
+        android:layout_below="@+id/JoinBtn"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
 
-    <ImageView
-        android:id="@+id/tournament1"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_below="@+id/HelloPlayer"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="63dp" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MyComp"
+        android:layout_marginTop="20dp"
+        android:divider="@color/black"
+        android:dividerHeight="2dp"
+        android:listSelector="@color/purple_200"
+        android:id="@+id/MyTournamentListView"
+        android:layout_marginBottom="40dp" />
 
 
 

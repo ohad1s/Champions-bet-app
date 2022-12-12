@@ -10,7 +10,7 @@
         android:id="@+id/welcomeManager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome Manager!"
+        android:text="Welcome "
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
