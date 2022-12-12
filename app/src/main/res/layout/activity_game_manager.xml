@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity_game_manager">
 
-    <ImageView
-        android:id="@+id/game_img"
-        android:layout_width="100dp"
-        android:layout_height="80dp" />
 
     <TextView
         android:id="@+id/game_name"
@@ -21,12 +17,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/game_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/game_name"
+        android:layout_marginTop="10dp"
+        android:text="10/07/1999"
+        android:inputType="date"/>
     <TextView
         android:id="@+id/home_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Competitions:"
-        android:layout_below="@+id/game_name"
+        android:layout_below="@+id/game_date"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"

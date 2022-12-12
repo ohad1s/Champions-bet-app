@@ -18,6 +18,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import src.games.Game;
 import src.games.Tournament;
 import src.games.User;
@@ -31,6 +35,7 @@ public class activity_game_manager extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase; // the data base we work on
 
     private TextView game_name_TextView;
+    private EditText game_date_EditText;
     private TextView home_name_TextView;
     private EditText home_score_EditText;
     private TextView away_name_TextView;
@@ -77,6 +82,7 @@ public class activity_game_manager extends AppCompatActivity {
     }
     public void afteronCreate() {
         game_name_TextView = (TextView) findViewById(R.id.game_name);
+        game_date_EditText = (EditText) findViewById(R.id.game_date);
         home_name_TextView = (TextView) findViewById(R.id.home_name);
         home_score_EditText = (EditText) findViewById(R.id.home_score);
         away_name_TextView = (TextView) findViewById(R.id.away_name);
@@ -84,15 +90,22 @@ public class activity_game_manager extends AppCompatActivity {
         save_game_Button = (Button) findViewById(R.id.save_game);
 
         game_name_TextView.setText(game.getGameID());
+        try {
+            game_date_EditText.setText(new SimpleDateFormat("dd/MM/yyyy").parse(game.getFinal_date().toString()).toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         home_name_TextView.setText(game.getHome().getName());
         home_score_EditText.setText(game.getHome_score() + "");
         away_name_TextView.setText(game.getAway().getName());
         away_score_EditText.setText(game.getAway_score() + "");
     }
 
-    public void SaveGame(View view) {
+    public void SaveGame(View view) throws ParseException {
+        Date gameDate =  new SimpleDateFormat("dd/MM/yyyy").parse(game_date_EditText.getText().toString());
         int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
         int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
+        game.setFinal_date(gameDate);
         game.setHome_score(homeScore);
         game.setAway_score(awayScore);
 
