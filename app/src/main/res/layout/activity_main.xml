@@ -9,10 +9,12 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="0dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         android:src="@drawable/logo_champions" />
 
     <Button
@@ -23,6 +25,8 @@
         android:text="@string/manager"
         android:textStyle="italic|bold"
         android:layout_below="@+id/Log_As"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"/>
 
     <Button
@@ -33,6 +37,8 @@
         android:textStyle="italic|bold"
         android:text="@string/player"
         android:layout_below="@+id/manager"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@color/black"
         android:layout_marginTop="30dp" />
 
     <TextView
