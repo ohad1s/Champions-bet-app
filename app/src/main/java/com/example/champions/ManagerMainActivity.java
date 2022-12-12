@@ -75,6 +75,7 @@ public class ManagerMainActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
                 b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
+                b.putInt("tournamentIndex", i);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                 finish();

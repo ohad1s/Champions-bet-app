@@ -58,6 +58,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".activity_game_manager"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".PlayerRegisterActivity"
             android:exported="false">
             <meta-data

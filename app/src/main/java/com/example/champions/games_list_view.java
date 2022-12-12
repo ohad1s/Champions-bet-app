@@ -24,6 +24,7 @@ import src.games.User;
 public class games_list_view extends AppCompatActivity {
     protected User user; // the user is connected
     protected Tournament tournament; // the user is connected
+    protected int tournamentIndex;
     private FirebaseFirestore firebaseDatabase; // the data base we work on
     int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
     ListView listView; // list view of tournament
@@ -38,6 +39,7 @@ public class games_list_view extends AppCompatActivity {
         if (b != null) {
             tourId = b.getString("tournamentid");
             userId = b.getString("userid");
+            tournamentIndex = b.getInt("tournamentIndex");
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -64,11 +66,13 @@ public class games_list_view extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-                Intent intent = new Intent(games_list_view.this, activity_game_list_view.class);
+                Intent intent = new Intent(games_list_view.this, activity_game_manager.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
                 b.putString("tournamentid", tournament.getTournamentID()); //tournament id
                 b.putString("gameId", tournament_games.get(i).getGameID());
+                b.putInt("gameIndex", i);
+                b.putInt("tournamentIndex", tournamentIndex);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                 finish();

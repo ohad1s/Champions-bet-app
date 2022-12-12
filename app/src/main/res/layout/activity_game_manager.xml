@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_game_manager">
+
+    <ImageView
+        android:id="@+id/game_img"
+        android:layout_width="100dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Competitions:"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/home_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Competitions:"
+        android:layout_below="@+id/game_name"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/home_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_name"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:inputType="number"/>
+    <TextView
+        android:id="@+id/away_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Competitions:"
+        android:layout_below="@+id/home_score"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/away_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/away_name"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:inputType="number"/>
+    <Button
+        android:id="@+id/save_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/away_score"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:onClick="SaveGame"
+        android:text="Save Game" />
+</RelativeLayout>
