@@ -73,6 +73,7 @@ public class ManagerMainActivity extends AppCompatActivity {
                 Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
                 Intent intent = new Intent(ManagerMainActivity.this, games_list_view.class);
                 Bundle b = new Bundle();
+                b.putString("userid", user.getUserID());
                 b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);

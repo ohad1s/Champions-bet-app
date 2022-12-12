@@ -22,6 +22,7 @@ import src.games.Tournament;
 import src.games.User;
 
 public class games_list_view extends AppCompatActivity {
+    protected User user; // the user is connected
     protected Tournament tournament; // the user is connected
     private FirebaseFirestore firebaseDatabase; // the data base we work on
     int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
@@ -33,9 +34,19 @@ public class games_list_view extends AppCompatActivity {
         firebaseDatabase = FirebaseFirestore.getInstance();
         Bundle b = getIntent().getExtras();
         String tourId = "hello"; // or other values
-        if(b != null)
+        String userId = "hello"; // or other values
+        if (b != null) {
             tourId = b.getString("tournamentid");
-        DocumentReference docRef = firebaseDatabase.collection("tournaments").document(tourId);
+            userId = b.getString("userid");
+        }
+        DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                user = documentSnapshot.toObject(User.class);
+            }
+        });
+        docRef = firebaseDatabase.collection("tournaments").document(tourId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -49,18 +60,20 @@ public class games_list_view extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.MyGamesListView);
         GameBaseAdapter tournamentGamesBaseAdapter = new GameBaseAdapter(getApplicationContext(), tournament_games, TournamentImg);
         listView.setAdapter(tournamentGamesBaseAdapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-//                Intent intent = new Intent(ManagerMainActivity.this, games_list_view.class);
-//                Bundle b = new Bundle();
-//                b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
-//                intent.putExtras(b); //Put your id to your next Intent
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
+                Intent intent = new Intent(games_list_view.this, activity_game_list_view.class);
+                Bundle b = new Bundle();
+                b.putString("userid", user.getUserID());
+                b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+                b.putString("gameId", tournament_games.get(i).getGameID());
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
