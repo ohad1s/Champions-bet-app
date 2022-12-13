@@ -14,6 +14,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textSize="35dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -26,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_below="@id/tour_name"
+        android:textSize="25dp"
         android:layout_centerHorizontal="true"/>
     <EditText
         android:id="@+id/homeTeam"
@@ -96,6 +98,8 @@
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:gravity="center"
+        android:textIsSelectable="true"
+        android:longClickable="true"
         android:layout_below="@+id/t_token"/>
 
 </RelativeLayout>

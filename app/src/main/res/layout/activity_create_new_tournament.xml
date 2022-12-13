@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tournamentName"
         android:layout_marginTop="30dp"
-        android:text="Last Date for betting"
+        android:text="Final Date"
         android:textSize="20dp"
         android:onClick="openDatePicker"
         android:inputType="date"/>

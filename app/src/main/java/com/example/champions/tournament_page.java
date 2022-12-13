@@ -2,7 +2,11 @@ package com.example.champions;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -142,6 +146,17 @@ public class tournament_page extends AppCompatActivity {
             tv1.setText(this.b.getString("tour_name"));
             TextView tv2 = (TextView) findViewById(R.id.token);
             tv2.setText(this.b.getString("tourId"));
+            // Enable text selection in the TextView.
+            tv2.setTextIsSelectable(true);
+
+            tv2.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    onLongClickHandler(view);
+                    return true;
+                }
+            });
+
         }
     }
 
@@ -161,10 +176,10 @@ public class tournament_page extends AppCompatActivity {
 //        Date f_date = formatter.parse(date_to_format);
         Date f_date= String_to_Date(dateButton.getText().toString());
         Game newGame = new Game(gameID, home, way, f_date );
-
-        tournament.getGames().add(newGame);
         addToDB(home, way, newGame);
-
+        homeTeam.setText("");
+        wayTeam.setText("");
+        dateButton.setText("Last Date for betting");
     }
 
     public void addToDB(Team home, Team way, Game game) {
@@ -192,6 +207,7 @@ public class tournament_page extends AppCompatActivity {
                 }
             }
         });
+        tournament.getGames().add(game);
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -244,5 +260,26 @@ public class tournament_page extends AppCompatActivity {
     }
     public void openDatePicker(View view) {
         datePickerDialog.show();
+    }
+
+
+    public void onLongClickHandler(View view) {
+        // Check if the view is a TextView.
+        if (view instanceof TextView) {
+            // Get the TextView.
+            TextView textView = (TextView) view;
+
+            // Get the clipboard manager.
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+            // Create a new clipboard item with the text from the TextView.
+            ClipData clip = ClipData.newPlainText("text", textView.getText());
+
+            // Set the clipboard item on the clipboard.
+            clipboard.setPrimaryClip(clip);
+
+            // Show a toast message.
+            Toast.makeText(getApplicationContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
+        }
     }
 }
