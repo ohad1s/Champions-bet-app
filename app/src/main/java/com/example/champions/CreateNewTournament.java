@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import src.games.Game;
 import src.games.Team;
@@ -34,26 +35,23 @@ public class CreateNewTournament extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase;
     protected User user;
     private Tournament tournament;
-
-    private EditText tournamentName;
-    private EditText homeTeam;
-    private EditText wayTeam;
-    //    private EditText finalDate;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+//    private EditText tournamentName;
+//    private EditText homeTeam;
+//    private EditText wayTeam;
+    //    private EditText finalDate;
+//    private DatePickerDialog datePickerDialog;
+//    private Button dateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_tournament);
 
-        tournamentName = findViewById(R.id.tournamentName);
-        homeTeam = findViewById(R.id.homeTeam);
-        wayTeam = findViewById(R.id.wayTeam);
-//        finalDate = findViewById(R.id.finalDate);
         initDatePicker();
         dateButton = findViewById(R.id.finalDate);
-        dateButton.setText(getTodaysDate());
 
         firebaseDatabase = FirebaseFirestore.getInstance();
         Bundle b = getIntent().getExtras();
@@ -65,18 +63,86 @@ public class CreateNewTournament extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
-                afterOnCreate();
             }
         });
     }
 
-    private String getTodaysDate() {
-        Calendar cal = Calendar.getInstance();
-        int year= cal.get(Calendar.YEAR);
-        int month= cal.get(Calendar.MONTH);
-        month+=1;
-        int day= cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day,month, year);
+    private String getMonthNumber(String month) {
+        switch (month) {
+            case "January":
+                return ("01");
+            case "February":
+                return ("02");
+            case "March":
+                return ("03");
+            case "April":
+                return ("04");
+            case "May":
+                return ("05");
+            case "June":
+                return ("06");
+            case "July":
+                return ("07");
+            case "August":
+                return ("08");
+            case "September":
+                return ("09");
+            case "October":
+                return ("10");
+            case "November":
+                return ("11");
+            case "December":
+                return ("12");
+        }
+        return "01";
+    }
+    public void openDatePicker(View view) {
+        datePickerDialog.show();
+    }
+
+    private Date String_to_Date(String d) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        int spaceIndex = dateButton.getText().toString().indexOf(" ");
+        String month_to_format= getMonthNumber(dateButton.getText().toString().substring(0,spaceIndex));
+        String day_to_format= dateButton.getText().toString().substring(spaceIndex+1,spaceIndex+3);
+        String year_to_format= dateButton.getText().toString().substring(spaceIndex+4);
+        String date_to_format= year_to_format+"-"+month_to_format+"-"+day_to_format;
+        System.out.println(day_to_format);
+        Date f_date = formatter.parse(date_to_format);
+        return f_date;
+    }
+
+    public void onClickDoneButton(View view) throws ParseException {
+        UUID uuid = UUID.randomUUID();
+        String uniqueToken = uuid.toString().replace("\\", "a");
+        String TournamentName = findViewById(R.id.tournamentName).toString();
+//        user.getMyTournaments().add(tournament);
+        Date f_date= String_to_Date(dateButton.getText().toString());
+        tournament= new Tournament(uniqueToken,TournamentName, user.getUserID(), f_date);
+        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CreateNewTournament.this, "Created successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CreateNewTournament.this, "Created successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateNewTournament.this, tournament_page.class);
+                    Bundle b = new Bundle();
+                    b.putString("userid", user.getUserID()); //Your id
+                    b.putString("tourId", tournament.getTournamentID());
+                    b.putString("tour_name", tournament.getName());
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 
     private void initDatePicker() {
@@ -134,93 +200,4 @@ public class CreateNewTournament extends AppCompatActivity {
         return "January";
     }
 
-    public void afterOnCreate() {
-        String tournamentID = user.getUserID() + "/" + user.getMyTournaments().size();
-        tournament = new Tournament(tournamentID, "name", user.getUserID(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
-    }
-
-    public void onClickAddGameButton(View view) throws ParseException {
-        String tournamentName_text = tournamentName.getText().toString();
-        String homeTeam_text = homeTeam.getText().toString();
-        String wayTeam_text = wayTeam.getText().toString();
-//        Date finalDate_date = new SimpleDateFormat("dd/MM/yyyy").parse(finalDate.getText().toString());
-
-        Team home = new Team(homeTeam_text, homeTeam_text);
-        Team way = new Team(wayTeam_text, wayTeam_text);
-
-        String gameID = home.getName() + " vs " + way.getName();
-        Date f_date = new SimpleDateFormat("dd/MM/yyyy").parse(dateButton.getText().toString());
-        Game newGame = new Game(gameID, home, way, f_date );
-
-        tournament.setName(tournamentName_text);
-        tournament.getGames().add(newGame);
-        tournament.setTournamentID(tournament.getName());
-        addToDB(home, way, newGame);
-
-    }
-
-    public void onClickDoneButton(View view) throws ParseException {
-        user.getMyTournaments().add(tournament);
-        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add success", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add success", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateNewTournament.this, ManagerMainActivity.class);
-                    Bundle b = new Bundle();
-                    b.putString("userid", user.getUserID()); //Your id
-                    intent.putExtras(b); //Put your id to your next Intent
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-    }
-
-    public void addToDB(Team home, Team way, Game game) {
-        firebaseDatabase.collection("teams").document(home.getTeamID()).set(home).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("teams").document(way.getTeamID()).set(way).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
-    }
 }

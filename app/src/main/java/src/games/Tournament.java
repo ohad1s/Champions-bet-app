@@ -20,16 +20,15 @@ public class Tournament {
     private String tournamentID;
     private String name;
     private String managerID;
-    private Date start, end;
+    private Date  end;
     private  List<Game> games;
     private  List<User> participants;
 
-    public Tournament(String tournamentID, String name, String manager, Date start, Date end) {
+    public Tournament(String tournamentID, String name, String manager, Date end) {
         this();
         this.tournamentID = tournamentID;
         this.name = name;
         this.managerID = manager;
-        this.start = start;
         this.end = end;
         this.games = new ArrayList<>();
         this.participants = new ArrayList<>();
@@ -62,14 +61,6 @@ public class Tournament {
         this.managerID = managerID;
     }
 
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
     public Date getEnd() {
         return end;
     }
@@ -99,7 +90,6 @@ public class Tournament {
         toReturn.put("tournamentID", tournamentID);
         toReturn.put("name", name);
         toReturn.put("manager", managerID);
-        toReturn.put("start", start);
         toReturn.put("end", end);
         toReturn.put("participants", participants.toString());
         toReturn.put("games", games);

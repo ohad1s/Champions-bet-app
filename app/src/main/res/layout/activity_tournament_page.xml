@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tournament_page">
+
+    <TextView
+        android:id="@+id/tour_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    "
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/addGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Game:"
+        android:layout_marginTop="40dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@id/tour_name"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/homeTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="Home team"
+        android:gravity="center"
+        android:layout_below="@id/addGame" />
+    <EditText
+        android:id="@+id/wayTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homeTeam"
+        android:layout_marginTop="10dp"
+        android:hint="AwayTeam"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/finalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wayTeam"
+        android:layout_marginTop="20dp"
+        android:text="Last Date for betting"
+        android:textSize="20dp"
+        android:onClick="openDatePicker"
+        android:inputType="date"/>
+
+    <Button
+        android:id="@+id/addGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finalDate"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:onClick="onClickAddGameButton"
+        android:text="Add Game" />
+    <Button
+        android:id="@+id/LeaderBoardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addGameButton"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="LeaderBoard" />
+
+    <TextView
+        android:id="@+id/t_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tournament Token: "
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_below="@+id/LeaderBoardButton"/>
+    <TextView
+        android:id="@+id/token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="token"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/t_token"/>
+
+</RelativeLayout>
