@@ -20,6 +20,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,7 +49,6 @@ public class tournament_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Bundle b = getIntent().getExtras();
         setContentView(R.layout.activity_tournament_page);
         tour_name_text = findViewById(R.id.tour_name);
         homeTeam = findViewById(R.id.homeTeam);
@@ -58,8 +60,10 @@ public class tournament_page extends AppCompatActivity {
         firebaseDatabase = FirebaseFirestore.getInstance();
         b = getIntent().getExtras();
         String userId = "hello"; // or other values
-        if (b != null)
+        if (b != null) {
             userId = b.getString("userid");
+            tournament = (Tournament) b.getSerializable("tour_obj");
+        }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -133,10 +137,12 @@ public class tournament_page extends AppCompatActivity {
     }
 
     public void afterOnCreate() {
-        TextView tv1 = (TextView) findViewById(R.id.tour_name);
-        tv1.setText(this.b.getString("tour_name"));
-        TextView tv2 = (TextView) findViewById(R.id.token);
-        tv2.setText(this.b.getString("tourId"));
+        if (b != null) {
+            TextView tv1 = (TextView) findViewById(R.id.tour_name);
+            tv1.setText(this.b.getString("tour_name"));
+            TextView tv2 = (TextView) findViewById(R.id.token);
+            tv2.setText(this.b.getString("tourId"));
+        }
     }
 
     public void onClickAddGameButton(View view) throws ParseException {

@@ -43,8 +43,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".JoinTorByToken"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".tournament_page"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

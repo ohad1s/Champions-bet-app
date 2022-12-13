@@ -115,7 +115,8 @@ public class CreateNewTournament extends AppCompatActivity {
     public void onClickDoneButton(View view) throws ParseException {
         UUID uuid = UUID.randomUUID();
         String uniqueToken = uuid.toString().replace("\\", "a");
-        String TournamentName = findViewById(R.id.tournamentName).toString();
+        EditText TournamentNameBut = findViewById(R.id.tournamentName);
+        String TournamentName = TournamentNameBut.getText().toString();
 //        user.getMyTournaments().add(tournament);
         Date f_date= String_to_Date(dateButton.getText().toString());
         tournament= new Tournament(uniqueToken,TournamentName, user.getUserID(), f_date);
@@ -127,6 +128,7 @@ public class CreateNewTournament extends AppCompatActivity {
                 }
             }
         });
+        user.getMyTournaments().add(tournament);
         firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -137,6 +139,7 @@ public class CreateNewTournament extends AppCompatActivity {
                     b.putString("userid", user.getUserID()); //Your id
                     b.putString("tourId", tournament.getTournamentID());
                     b.putString("tour_name", tournament.getName());
+                    b.putSerializable("tour_obj", tournament);
                     intent.putExtras(b); //Put your id to your next Intent
                     startActivity(intent);
                     finish();

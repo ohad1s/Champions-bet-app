@@ -10,12 +10,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Tournament {
+public class Tournament implements Serializable {
     private FirebaseFirestore firebaseDatabase;
     private String tournamentID;
     private String name;
