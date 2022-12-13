@@ -7,6 +7,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,9 +20,10 @@ import java.util.Date;
 import src.games.Tournament;
 import src.games.User;
 
-public class JoinTorByToken extends ManagerMainActivity {
+public class JoinTorByToken extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase;
     private EditText Token;
+    private String userId;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,17 @@ public class JoinTorByToken extends ManagerMainActivity {
 
         firebaseDatabase = FirebaseFirestore.getInstance();
         Bundle b = getIntent().getExtras();
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+// Get the user ID
+        assert currentUser != null;
+        this.userId = currentUser.getUid();
     }
 
-    public void onClickEnterButton(View view) throws ParseException {
-        DocumentReference docRef = firebaseDatabase.collection("tournaments").document(String.valueOf(this.Token));
-        docRef.collection("players").add(this.user.toHashMap());
-    }
+//    public void onClickEnterButton(View view) throws ParseException {
+//        DocumentReference docRef = firebaseDatabase.collection("tournaments").document(String.valueOf(this.Token));
+//
+//        docRef.collection("players").add(this.user.toHashMap());
+//    }
 }

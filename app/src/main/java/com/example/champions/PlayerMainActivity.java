@@ -53,11 +53,6 @@ public class PlayerMainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
-                System.out.println(user);
-                System.out.println("bdika!!!");
-                System.out.println(documentSnapshot.toString());
-                System.out.println(user.getUserID());
-                System.out.println(user.getNickname());
                 afteronCreate();
             }
         });

@@ -165,7 +165,7 @@ public class CreateNewTournament extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewTournament.this, "add success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -173,7 +173,7 @@ public class CreateNewTournament extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(CreateNewTournament.this, "add succees", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewTournament.this, "add success", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateNewTournament.this, ManagerMainActivity.class);
                     Bundle b = new Bundle();
                     b.putString("userid", user.getUserID()); //Your id
