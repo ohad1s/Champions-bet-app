@@ -25,7 +25,6 @@
         android:layout_marginTop="20dp"
         android:text="+ Join a New Competition +"
         android:layout_centerVertical="true"
-        android:onClick="onJoinButton"
         />
 
     <Button

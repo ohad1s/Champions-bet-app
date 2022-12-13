@@ -8,11 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,7 +24,7 @@ import src.games.Tournament;
 import src.games.User;
 
 public class PlayerMainActivity extends AppCompatActivity {
-    private Button createANewTournament; // bottom to create a new tournament
+    private Button JoinTorButton; // bottom to create a new tournament
     protected User user; // the user is connected
     private FirebaseFirestore firebaseDatabase; // the data base we work on
     int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
@@ -36,14 +37,27 @@ public class PlayerMainActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseFirestore.getInstance();
         Bundle b = getIntent().getExtras();
-        String userId = "hello"; // or other values
-        if(b != null)
-            userId = b.getString("userid");
+        // Get the current user
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Get the user ID
+        assert currentUser != null;
+        String userId = currentUser.getUid();
+
+//        String userId; // or other values
+//        if(b != null)
+//            userId = b.getString("userid");
+
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
+                System.out.println(user);
+                System.out.println("bdika!!!");
+                System.out.println(documentSnapshot.toString());
+                System.out.println(user.getUserID());
+                System.out.println(user.getNickname());
                 afteronCreate();
             }
         });
@@ -57,11 +71,11 @@ public class PlayerMainActivity extends AppCompatActivity {
         textView.setText("Welcome " + user.getNickname() + "!");
 
 
-        createANewTournament = findViewById(R.id.JoinBtn);
-        createANewTournament.setOnClickListener(new View.OnClickListener() {
+        JoinTorButton = findViewById(R.id.JoinBtn);
+        JoinTorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PlayerMainActivity.this, CreateNewTournament.class);
+                Intent intent = new Intent(PlayerMainActivity.this, JoinTorByToken.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
