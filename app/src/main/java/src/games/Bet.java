@@ -3,8 +3,9 @@ package src.games;
 import java.util.HashMap;
 
 public class Bet {
-    private  String betID;
+    private  String betID; //Should be a player ID
     private Game game;
+    private String name;
     private int home_score;
     private int away_score;
     User user;
@@ -15,8 +16,13 @@ public class Bet {
         this.user = user;
         this.home_score = h;
         this.away_score = a;
+        this.name= game.home.getName()+" VS "+game.away.getName();
     }
     public Bet(){}
+
+    public String getName() {
+        return name;
+    }
 
     public String getBetID() {
         return betID;
@@ -64,6 +70,7 @@ public class Bet {
         toReturn.put("game", game.getGameID());
         toReturn.put("home_score", home_score);
         toReturn.put("away_score", away_score);
+        toReturn.put("name", this.name);
         return toReturn;
     }
     public String toString() {

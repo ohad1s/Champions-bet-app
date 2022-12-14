@@ -4,12 +4,13 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Game {
-    String gameID;
+    String gameID; //Should be random or from 1 to infinity by order
     Team home;
     Team away;
     int home_score;
     int away_score;
     Date final_date;
+    String name;
 
     public Game(String gameID, Team home, Team away, Date fd) {
         this.gameID = gameID;
@@ -18,8 +19,13 @@ public class Game {
         this.away_score=0;
         this.home_score=0;
         this.final_date=fd;
+        this.name= home.getName()+" VS "+away.getName();
     }
     public Game(){}
+
+    public String getName() {
+        return name;
+    }
 
     public String getGameID() {
         return gameID;

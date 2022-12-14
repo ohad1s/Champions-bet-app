@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tournament_user_page">
+
+    <TextView
+        android:id="@+id/tour_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    "
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="45dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/LeaderBoardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tour_name"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="LeaderBoard" />
+
+    <TextView
+        android:id="@+id/gamelist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Games to bet on:"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_below="@+id/LeaderBoardButton"/>
+    <ListView
+        android:id="@+id/my_gameslistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="token"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textIsSelectable="true"
+        android:longClickable="true"
+        android:layout_below="@+id/gamelist"/>
+
+</RelativeLayout>

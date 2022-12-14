@@ -1,14 +1,11 @@
 package com.example.champions;
-
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -20,12 +17,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import src.games.Tournament;
 import src.games.User;
 
@@ -35,6 +30,7 @@ public class JoinTorByToken extends AppCompatActivity {
     private String userId;
     private User user;
     private Tournament tournament;
+    Bundle b;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +40,8 @@ public class JoinTorByToken extends AppCompatActivity {
         Token = findViewById(R.id.your_token_here);
 
         firebaseDatabase = FirebaseFirestore.getInstance();
-        Bundle b = getIntent().getExtras();
-
+        b = getIntent().getExtras();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
 // Get the user ID
         assert currentUser != null;
         userId = currentUser.getUid();
@@ -77,10 +71,13 @@ public class JoinTorByToken extends AppCompatActivity {
                 user.getMyTournaments().add(tournament);
                 tournament.getParticipants().add(userId);
                 addToDbHelper();
+                b.putString("token",Token.getText().toString());
+                Intent intent = new Intent(JoinTorByToken.this, tournament_user_page.class);
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
             }
         });
-
-
     }
 
     private void addToDbHelper(){
