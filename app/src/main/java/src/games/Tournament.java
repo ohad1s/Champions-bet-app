@@ -23,7 +23,7 @@ public class Tournament implements Serializable {
     private String managerID;
     private Date  end;
     private  List<Game> games;
-    private  List<User> participants;
+    private  List<String> participants;
 
     public Tournament(String tournamentID, String name, String manager, Date end) {
         this();
@@ -78,11 +78,11 @@ public class Tournament implements Serializable {
         this.games = games;
     }
 
-    public List<User> getParticipants() {
+    public List<String> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<User> participants) {
+    public void setParticipants(List<String> participants) {
         this.participants = participants;
     }
 

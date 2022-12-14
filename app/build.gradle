@@ -54,7 +54,7 @@ dependencies {
 
 dependencies {
 
-
+    implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-auth:21.0.2'

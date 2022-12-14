@@ -1,5 +1,6 @@
 package com.example.champions;
 
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +33,8 @@ public class JoinTorByToken extends AppCompatActivity {
     private FirebaseFirestore firebaseDatabase;
     private EditText Token;
     private String userId;
+    private User user;
+    private Tournament tournament;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +51,56 @@ public class JoinTorByToken extends AppCompatActivity {
 // Get the user ID
         assert currentUser != null;
         userId = currentUser.getUid();
+
+        DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                user = documentSnapshot.toObject(User.class);
+            }
+        });
+
     }
 
     public void onClickEnterButton(View view) throws ParseException {
+        addToDB();
+    }
 
-        // Get a reference to the Firebase database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-// Get a reference to the "tournaments" node in the database
-        DatabaseReference tournamentsRef = database.getReference("tournaments");
-
-// Get the ID of the tournament to add the user to
-        String tournamentId = "my-tournament-id";
-
-// Get the ID of the user to add to the tournament
-        String userId = "my-user-id";
-
-// Add the user to the tournament's participants list
-        tournamentsRef.child(tournamentId).child("participants").add(userId);
-
-// Add the tournament to the user's list of tournaments
-        tournamentsRef.child(userId).child("tournaments").add(tournamentId);
+    private void addToDB() {
 
 
+        DocumentReference docRef2 = firebaseDatabase.collection("tournaments").document(Token.getText().toString());
+        docRef2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                tournament = documentSnapshot.toObject(Tournament.class);
+                user.getMyTournaments().add(tournament);
+                tournament.getParticipants().add(userId);
+                addToDbHelper();
+            }
+        });
+
+
+    }
+
+    private void addToDbHelper(){
+        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(JoinTorByToken.this, "Joined successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(JoinTorByToken.this, "Joined successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
