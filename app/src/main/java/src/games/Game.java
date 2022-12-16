@@ -1,5 +1,6 @@
 package src.games;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -11,6 +12,7 @@ public class Game {
     int away_score;
     Date final_date;
     String name;
+    ArrayList<Bet>bets;
 
     public Game(String gameID, Team home, Team away, Date fd) {
         this.gameID = gameID;
@@ -20,6 +22,7 @@ public class Game {
         this.home_score=0;
         this.final_date=fd;
         this.name= home.getName()+" VS "+away.getName();
+        this.bets= new ArrayList<Bet>();
     }
     public Game(){}
 
@@ -73,6 +76,10 @@ public class Game {
 
     public void setFinal_date(Date final_date) {
         this.final_date = final_date;
+    }
+
+    public ArrayList<Bet> getBets() {
+        return bets;
     }
 
     public void final_score(int h, int a){

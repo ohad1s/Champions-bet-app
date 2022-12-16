@@ -66,15 +66,15 @@ public class tournament_user_page extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 System.out.println("clicked!");
-//                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-//                Intent intent = new Intent(ManagerMainActivity.this, games_list_view.class);
-//                Bundle b = new Bundle();
-//                b.putString("userid", user.getUserID());
-//                b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
-//                b.putInt("tournamentIndex", i);
-//                intent.putExtras(b); //Put your id to your next Intent
-//                startActivity(intent);
-//                finish();
+                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
+                Intent intent = new Intent(tournament_user_page.this, activity_game_player.class);
+                Bundle b = new Bundle();
+                b.putString("userid", userId);
+                b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+                b.putInt("gameIndex", i);
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
             }
         });
     }

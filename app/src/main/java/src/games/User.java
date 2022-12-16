@@ -13,7 +13,7 @@ public class User {
     private String password;
     private String nickname;
     private List<Tournament> myTournaments;
-    private List<Bet> userBets;
+
 
     public User(String userID, String email ,String password, String nickname){
         this.userID = userID;
@@ -21,7 +21,7 @@ public class User {
         this.nickname=nickname;
         this.password=password;
         this.myTournaments = new ArrayList<Tournament>();
-        this.userBets = new ArrayList<Bet>();
+
     }
     public User() {
     }
@@ -66,13 +66,6 @@ public class User {
         this.myTournaments = myTournaments;
     }
 
-    public List<Bet> getUserBets() {
-        return userBets;
-    }
-
-    public void setUserBets(List<Bet> userBets) {
-        this.userBets = userBets;
-    }
 
     public HashMap<String, Object> toHashMap(){
         HashMap<String, Object> toReturn = new HashMap<>();
@@ -81,7 +74,6 @@ public class User {
         toReturn.put("nickname", nickname);
         toReturn.put("password", password);
         toReturn.put("myTournaments", myTournaments.toString());
-        toReturn.put("userBets", userBets.toString());
         return toReturn;
     }
     public String toString() {

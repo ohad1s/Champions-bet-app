@@ -86,7 +86,7 @@ public class PlayerMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-                Intent intent = new Intent(PlayerMainActivity.this, games_list_view.class);
+                Intent intent = new Intent(PlayerMainActivity.this, game_list_view_player.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
                 b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
