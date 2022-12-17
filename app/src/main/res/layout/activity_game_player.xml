@@ -21,8 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="--"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/game_name"
@@ -30,7 +29,9 @@
             android:layout_height="wrap_content"
             android:text="                                                 "
             android:textSize="25dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            />
 
         <EditText
             android:id="@+id/away_score"

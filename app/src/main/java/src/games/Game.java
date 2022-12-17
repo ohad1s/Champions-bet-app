@@ -1,10 +1,11 @@
 package src.games;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Game {
+public class Game implements Serializable {
     String gameID; //Should be random or from 1 to infinity by order
     Team home;
     Team away;

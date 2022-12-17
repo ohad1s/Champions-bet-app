@@ -67,6 +67,9 @@ public class tournament_page extends AppCompatActivity {
         if (b != null) {
             userId = b.getString("userid");
             tournament = (Tournament) b.getSerializable("tour_obj");
+            if (tournament == null){
+                tournament= (Tournament) getIntent().getSerializableExtra("tour_obj2");
+            }
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

@@ -71,18 +71,23 @@ public class ManagerMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-                Intent intent = new Intent(ManagerMainActivity.this, games_list_view.class);
+                Intent intent = new Intent(ManagerMainActivity.this, tournament_page.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
-                b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
-                b.putInt("tournamentIndex", i);
+                Tournament tournament= user_tournament.get(i);
+                System.out.println(tournament);
+                System.out.println("Ciii");
+//                b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
+//                b.putInt("tournamentIndex", i);
+                b.putString("userid", user.getUserID()); //Your id
+                b.putString("tourId", tournament.getTournamentID());
+                b.putString("tour_name", tournament.getName());
+//                b.putSerializable("tour_obj", tournament);
+                intent.putExtra("tour_obj2", tournament);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
                 finish();
             }
         });
-    }
-    public void onJoinButton(){
-        startActivity(new Intent(this, JoinTorByToken.class));
     }
 }

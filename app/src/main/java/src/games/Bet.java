@@ -1,8 +1,9 @@
 package src.games;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Bet {
+public class Bet implements Serializable {
     private  String betID; //Should be a player ID
     private String gameId;
     private String name;
