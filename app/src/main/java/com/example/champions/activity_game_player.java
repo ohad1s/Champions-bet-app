@@ -34,6 +34,7 @@ public class activity_game_player extends AppCompatActivity {
     protected int gameIndex;
     protected int tournamentIndex;
     private FirebaseFirestore firebaseDatabase; // the data base we work on
+    private String game_name;
 
     private EditText home_score_EditText;
     private TextView game_name_tv;
@@ -74,17 +75,17 @@ public class activity_game_player extends AppCompatActivity {
                 assert tournament != null;
                 System.out.println(gameIndex);
                 System.out.println(tournament.getGames());
-                game=tournament.getGames().get(gameIndex);
+                game = tournament.getGames().get(gameIndex);
                 System.out.println(game);
-                if (game==null){
+                if (game == null) {
                     System.out.println("ZZZZZZZZZZZZZZ\n\n\nZZZZZZZZZZZZZZZZ");
-                }
-                else{
+                } else {
                     System.out.println("NO NULL");
                 }
+                game_name=game.getName();
+                afteronCreate();
             }
         });
-        afteronCreate();
     }
 
     public void afteronCreate() {
@@ -96,7 +97,7 @@ public class activity_game_player extends AppCompatActivity {
             System.out.println("null game");
         }
         else{
-            game_name_tv.setText(game.getName());
+            game_name_tv.setText(game_name);
         }
 
     }
