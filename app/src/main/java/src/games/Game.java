@@ -94,6 +94,7 @@ public class Game {
         toReturn.put("home_score", home_score);
         toReturn.put("away_score", away_score);
         toReturn.put("final_date", final_date.toString());
+        toReturn.put("bets",bets);
         return toReturn;
     }
     public String toString() {

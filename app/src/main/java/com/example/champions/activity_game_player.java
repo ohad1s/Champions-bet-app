@@ -111,8 +111,15 @@ public class activity_game_player extends AppCompatActivity {
             int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
             int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
             Bet bet = new Bet(user.getUserID(), homeScore, awayScore, game.getGameID());
+            System.out.println(tournament);
+            System.out.println("ci1");
+            System.out.println(tournament.getGames());
+            System.out.println("ci2");
+            System.out.println(tournament.getGames().get(gameIndex));
+            System.out.println("ci3");
+            System.out.println(tournament.getGames().get(gameIndex).getBets());
+            System.out.println("ci4");
             tournament.getGames().get(gameIndex).getBets().add(bet);
-
 
             firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
