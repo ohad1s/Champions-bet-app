@@ -9,11 +9,15 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
+import java.util.Objects;
+
 import src.games.Tournament;
 import src.games.User;
 /**
@@ -85,8 +89,18 @@ public class ManagerMainActivity extends AppCompatActivity {
 //                b.putSerializable("tour_obj", tournament);
                 intent.putExtra("tour_obj2", tournament);
                 intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-                finish();
+                if (Objects.equals(user.getUserID(), tournament.getManagerID())){
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Toast.makeText(ManagerMainActivity.this, "You are not the Manager of this tournament!", Toast.LENGTH_SHORT).show();
+                    System.out.println(user.getUserID());
+                    System.out.println("ciiii");
+                    System.out.println(tournament.getManagerID());
+                    System.out.println("wtf!");
+                }
+
             }
         });
     }
