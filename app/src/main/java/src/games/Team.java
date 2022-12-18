@@ -2,11 +2,12 @@ package src.games;
 
 import android.widget.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Team {
+public class Team implements Serializable {
     private String teamID;
     private String name;
     private ImageView image;

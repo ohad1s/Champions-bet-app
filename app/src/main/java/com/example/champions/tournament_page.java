@@ -49,6 +49,7 @@ public class tournament_page extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private Bundle b;
+    private int tournamentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,9 @@ public class tournament_page extends AppCompatActivity {
                 tournament= (Tournament) getIntent().getSerializableExtra("tour_obj2");
                 System.out.println("im here:");
                 System.out.println("id: "+tournament);
+                System.out.println(tournament.getGames());
             }
+            tournamentIndex=b.getInt("tournamentIndex");
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -189,36 +192,48 @@ public class tournament_page extends AppCompatActivity {
     }
 
     public void addToDB(Team home, Team way, Game game) {
-        firebaseDatabase.collection("teams").document(home.getTeamID()).set(home).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("teams").document(way.getTeamID()).set(way).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        firebaseDatabase.collection("teams").document(home.getTeamID()).set(home).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        firebaseDatabase.collection("teams").document(way.getTeamID()).set(way).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
         tournament.getGames().add(game);
+        user.getMyTournaments().get(tournamentIndex).getGames().add(game);
+        System.out.println(tournament.getGames());
+        System.out.println("im here");
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(tournament_page.this, "add succees", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(tournament_page.this, "Success!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(tournament_page.this, "Success!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

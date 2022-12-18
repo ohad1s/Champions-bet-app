@@ -82,7 +82,7 @@ public class ManagerMainActivity extends AppCompatActivity {
                 System.out.println(tournament);
                 System.out.println("Ciii");
 //                b.putString("tournamentid", user_tournament.get(i).getTournamentID()); //tournament id
-//                b.putInt("tournamentIndex", i);
+                b.putInt("tournamentIndex", i);
                 b.putString("userid", user.getUserID()); //Your id
                 b.putString("tourId", tournament.getTournamentID());
                 b.putString("tour_name", tournament.getName());
