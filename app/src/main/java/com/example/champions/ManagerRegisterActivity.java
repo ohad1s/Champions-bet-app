@@ -99,10 +99,15 @@ public class ManagerRegisterActivity extends AppCompatActivity {
                     b.putString("userid", userid); //Your id
                     intent.putExtras(b); //Put your id to your next Intent
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

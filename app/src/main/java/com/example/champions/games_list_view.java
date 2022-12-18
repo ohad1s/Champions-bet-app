@@ -75,9 +75,14 @@ public class games_list_view extends AppCompatActivity {
                 b.putInt("tournamentIndex", tournamentIndex);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

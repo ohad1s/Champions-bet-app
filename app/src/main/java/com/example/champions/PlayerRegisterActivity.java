@@ -66,4 +66,9 @@ public class PlayerRegisterActivity extends AppCompatActivity {
             setContentView(R.layout.activity_create_new_tournament);
         }
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

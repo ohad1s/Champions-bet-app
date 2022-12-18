@@ -64,7 +64,7 @@ public class ManagerMainActivity extends AppCompatActivity {
                 b.putString("userid", user.getUserID()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
         List<Tournament> user_tournament = user.getMyTournaments();
@@ -91,17 +91,19 @@ public class ManagerMainActivity extends AppCompatActivity {
                 intent.putExtras(b); //Put your id to your next Intent
                 if (Objects.equals(user.getUserID(), tournament.getManagerID())){
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
                 else{
                     Toast.makeText(ManagerMainActivity.this, "You are not the Manager of this tournament!", Toast.LENGTH_SHORT).show();
-                    System.out.println(user.getUserID());
-                    System.out.println("ciiii");
-                    System.out.println(tournament.getManagerID());
-                    System.out.println("wtf!");
+
                 }
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

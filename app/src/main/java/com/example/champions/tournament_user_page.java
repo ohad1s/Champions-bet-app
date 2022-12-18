@@ -74,9 +74,14 @@ public class tournament_user_page extends AppCompatActivity {
                 b.putInt("gameIndex", i);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
 

@@ -75,7 +75,7 @@ public class PlayerMainActivity extends AppCompatActivity {
                 b.putString("userid", user.getUserID()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
         List<Tournament> user_tournament = user.getMyTournaments();
@@ -94,9 +94,13 @@ public class PlayerMainActivity extends AppCompatActivity {
                 b.putString("token", user_tournament.get(i).getTournamentID());
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

@@ -41,13 +41,18 @@ public class PlayerLoginActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(PlayerLoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(PlayerLoginActivity.this, PlayerMainActivity.class));
-                finish();
+//                finish();
             }
         });
     }
 
     public void onClickPlayerRegister(View view) {
         startActivity(new Intent(PlayerLoginActivity.this, PlayerRegisterActivity.class));
+//        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
 }

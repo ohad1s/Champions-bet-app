@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickManager(View view){
         startActivity(new Intent(MainActivity.this, MangerLoginActivity.class));
-        finish();
+//        finish();
     }
     /**
      * When you click this bottom you pass to the player main activity
@@ -32,6 +32,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickPlayer(View view){
         startActivity(new Intent(MainActivity.this, PlayerLoginActivity.class));
-        finish();
+//        finish();
     }
 }

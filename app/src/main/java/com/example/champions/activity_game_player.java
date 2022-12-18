@@ -124,4 +124,9 @@ public class activity_game_player extends AppCompatActivity {
 
         }
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

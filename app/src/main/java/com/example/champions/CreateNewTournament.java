@@ -142,7 +142,7 @@ public class CreateNewTournament extends AppCompatActivity {
                     b.putSerializable("tour_obj", tournament);
                     intent.putExtras(b); //Put your id to your next Intent
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
             }
         });
@@ -202,5 +202,9 @@ public class CreateNewTournament extends AppCompatActivity {
         }
         return "January";
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

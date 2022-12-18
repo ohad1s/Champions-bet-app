@@ -75,7 +75,7 @@ public class JoinTorByToken extends AppCompatActivity {
                 Intent intent = new Intent(JoinTorByToken.this, tournament_user_page.class);
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }
@@ -100,5 +100,9 @@ public class JoinTorByToken extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

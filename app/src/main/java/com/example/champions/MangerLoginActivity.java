@@ -51,7 +51,7 @@ public class MangerLoginActivity extends AppCompatActivity {
                     b.putString("userid", userid); //Your id
                     intent.putExtras(b); //Put your id to your next Intent
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }else{
                     Toast.makeText(MangerLoginActivity.this,"Invalid Username Or Password!", Toast.LENGTH_SHORT ).show();
                 }
@@ -72,7 +72,11 @@ public class MangerLoginActivity extends AppCompatActivity {
 
     public void onClickManagerRegister(View view){
         startActivity(new Intent(MangerLoginActivity.this, ManagerRegisterActivity.class));
+//        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
-
 }
