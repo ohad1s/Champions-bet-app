@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.View;
@@ -69,6 +70,8 @@ public class tournament_page extends AppCompatActivity {
             tournament = (Tournament) b.getSerializable("tour_obj");
             if (tournament == null){
                 tournament= (Tournament) getIntent().getSerializableExtra("tour_obj2");
+                System.out.println("im here:");
+                System.out.println("id: "+tournament);
             }
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
@@ -285,9 +288,19 @@ public class tournament_page extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public void onClickEditGames(View view) {
+        Intent intent = new Intent(tournament_page.this, games_list_view.class);
+        Bundle b = new Bundle();
+        b.putString("userid", user.getUserID());
+        b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
     }
 }

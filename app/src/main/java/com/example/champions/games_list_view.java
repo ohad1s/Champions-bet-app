@@ -66,7 +66,7 @@ public class games_list_view extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
-                Intent intent = new Intent(games_list_view.this, tournament_page.class);
+                Intent intent = new Intent(games_list_view.this, activity_game_manager.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
                 b.putString("tournamentid", tournament.getTournamentID()); //tournament id

@@ -133,14 +133,15 @@ public class activity_game_manager extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(activity_game_manager.this, games_list_view.class);
-                    Bundle b = new Bundle();
-                    b.putString("userid", user.getUserID());
-                    b.putString("tournamentid", tournament.getTournamentID()); //tournament id
-                    b.putInt("tournamentIndex", tournamentIndex);
-                    intent.putExtras(b); //Put your id to your next Intent
-                    startActivity(intent);
+//                    Intent intent = new Intent(activity_game_manager.this, games_list_view.class);
+//                    Bundle b = new Bundle();
+//                    b.putString("userid", user.getUserID());
+//                    b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+//                    b.putInt("tournamentIndex", tournamentIndex);
+//                    intent.putExtras(b); //Put your id to your next Intent
+//                    startActivity(intent);
 //                    finish();
+                    onBackPressed();
                 }
             }
         });
