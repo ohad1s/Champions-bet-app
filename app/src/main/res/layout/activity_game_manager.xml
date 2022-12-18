@@ -6,72 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".activity_game_manager">
 
+    <TextView
+        android:id="@+id/EditGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit:"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/GameEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="       "
+        android:textSize="32dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/EditGame" />
 
-    <TextView
-        android:id="@+id/game_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Competitions:"
-        android:layout_marginTop="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:id="@+id/game_date"
+    <Button
+        android:id="@+id/finalDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/game_name"
-        android:layout_marginTop="10dp"
-        android:text="10/07/1999"
+        android:layout_below="@+id/GameEditName"
+        android:layout_marginTop="30dp"
+        android:text="Edit Final Date"
+        android:textSize="20dp"
+        android:onClick="openDatePicker"
         android:inputType="date"/>
-    <TextView
-        android:id="@+id/home_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Competitions:"
-        android:layout_below="@+id/game_date"
-        android:layout_marginTop="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:id="@+id/home_score"
+
+    <Button
+        android:id="@+id/updatefinalDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/home_name"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        android:inputType="number"/>
-    <TextView
-        android:id="@+id/away_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Competitions:"
-        android:layout_below="@+id/home_score"
-        android:layout_marginTop="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:id="@+id/away_score"
+        android:layout_below="@+id/finalDate"
+        android:layout_marginTop="30dp"
+        android:text="UPDATE"
+        android:textSize="20dp"
+        android:onClick="update_final_date"
+        android:inputType="date"/>
+
+    <LinearLayout
+        android:id="@+id/game_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/away_name"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        android:inputType="number"/>
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/updatefinalDate"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/home_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="home"
+            android:textStyle="bold"
+            android:gravity="start"/>
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                                     "
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            />
+
+        <EditText
+            android:id="@+id/away_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="away"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+
+
+
     <Button
         android:id="@+id/save_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/away_score"
+        android:layout_below="@+id/game_header"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:onClick="SaveGame"
-        android:text="Save Game" />
+        android:text="Enter final score" />
+
 </RelativeLayout>
