@@ -64,13 +64,13 @@ public class tournament_page extends AppCompatActivity {
         String userId = "hello"; // or other values
         if (b != null) {
             userId = b.getString("userid");
-            tournament = (Tournament) b.getSerializable("tour_obj");
-            if (tournament == null){
-                tournament= (Tournament) getIntent().getSerializableExtra("tour_obj2");
-                System.out.println("im here:");
-                System.out.println("id: "+tournament);
-                System.out.println(tournament.getGames());
-            }
+//            tournament = (Tournament) b.getSerializable("tour_obj");
+//            if (tournament == null){
+//                tournament= (Tournament) getIntent().getSerializableExtra("tour_obj2");
+//                System.out.println("im here:");
+//                System.out.println("id: "+tournament);
+//                System.out.println(tournament.getGames());
+//            }
             tournamentIndex=b.getInt("tournamentIndex");
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
@@ -78,6 +78,7 @@ public class tournament_page extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
+                tournament = user.getMyTournaments().get(tournamentIndex);
                 afterOnCreate();
             }
         });
@@ -212,7 +213,7 @@ public class tournament_page extends AppCompatActivity {
 //                }
 //            }
 //        });
-        tournament.getGames().add(game);
+//        tournament.getGames().add(game);
         user.getMyTournaments().get(tournamentIndex).getGames().add(game);
         System.out.println(tournament.getGames());
         System.out.println("im here");
