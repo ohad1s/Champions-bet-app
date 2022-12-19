@@ -120,6 +120,7 @@ public class CreateNewTournament extends AppCompatActivity {
 //        user.getMyTournaments().add(tournament);
         Date f_date= String_to_Date(dateButton.getText().toString());
         tournament= new Tournament(uniqueToken,TournamentName, user.getUserID(), f_date);
+        tournament.getParticipants().add(user.getUserID());
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

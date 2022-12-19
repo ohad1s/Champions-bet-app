@@ -18,20 +18,10 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/JoinBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/welcomeManager"
-        android:layout_marginTop="20dp"
-        android:text="+ Join a New Competition +"
-        android:layout_centerVertical="true"
-        />
-
-    <Button
         android:id="@+id/CreateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/JoinBtn"
+        android:layout_below="@+id/welcomeManager"
         android:layout_marginTop="20dp"
         android:text="+ Create a New Competition +"
         android:layout_centerVertical="true"

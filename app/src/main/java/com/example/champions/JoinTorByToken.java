@@ -1,11 +1,14 @@
 package com.example.champions;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -17,10 +20,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import src.games.Tournament;
 import src.games.User;
 
@@ -68,19 +73,25 @@ public class JoinTorByToken extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 tournament = documentSnapshot.toObject(Tournament.class);
-                user.getMyTournaments().add(tournament);
-                tournament.getParticipants().add(userId);
-                addToDbHelper();
-                b.putString("token",Token.getText().toString());
-                Intent intent = new Intent(JoinTorByToken.this, tournament_user_page.class);
-                intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
+                if (tournament.getParticipants().contains(userId)){
+                    Toast.makeText(JoinTorByToken.this, "You are already a member in this tournament!", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    user.getMyTournaments().add(tournament);
+                    tournament.getParticipants().add(userId);
+                    addToDbHelper();
+                    b.putString("token", Token.getText().toString());
+                    Intent intent = new Intent(JoinTorByToken.this, tournament_user_page.class);
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                }
 //                finish();
             }
         });
     }
 
-    private void addToDbHelper(){
+    private void addToDbHelper() {
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
