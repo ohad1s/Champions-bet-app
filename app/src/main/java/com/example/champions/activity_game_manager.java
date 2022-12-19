@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -75,16 +76,18 @@ public class activity_game_manager extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 tournament = documentSnapshot.toObject(Tournament.class);
-            }
-        });
-        docRef = firebaseDatabase.collection("games").document(gameId);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                game = documentSnapshot.toObject(Game.class);
+                game = tournament.getGames().get(gameIndex);
                 afteronCreate();
             }
         });
+//        docRef = firebaseDatabase.collection("games").document(gameId);
+//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                game = documentSnapshot.toObject(Game.class);
+//                afteronCreate();
+//            }
+//        });
     }
     public void afteronCreate() {
         game_name_TextView = (TextView) findViewById(R.id.game_name);
