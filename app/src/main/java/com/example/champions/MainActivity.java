@@ -3,7 +3,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+
+import com.example.champions.manager.MangerLoginActivity;
+import com.example.champions.player.PlayerLoginActivity;
 
 /**
  * This java class charge the main activity and to chose how you want to enter the app

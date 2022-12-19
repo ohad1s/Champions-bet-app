@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".manager_tournaments_list_view">
+    tools:context=".manager.manager_tournaments_list_view">
     
     <ImageView
         android:layout_width="100dp"
