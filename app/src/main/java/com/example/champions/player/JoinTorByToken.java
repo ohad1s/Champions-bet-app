@@ -75,6 +75,7 @@ public class JoinTorByToken extends AppCompatActivity {
                 else{
                     user.getMyTournaments().add(tournament);
                     tournament.getParticipants().add(userId);
+                    tournament.getLeaderboard().addNewUser(userId);
                     addToDbHelper();
                     b.putString("token", Token.getText().toString());
                     Intent intent = new Intent(JoinTorByToken.this, tournament_user_page.class);

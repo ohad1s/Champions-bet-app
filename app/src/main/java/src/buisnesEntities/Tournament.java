@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Tournament implements Serializable {
     private FirebaseFirestore firebaseDatabase;
@@ -17,6 +18,8 @@ public class Tournament implements Serializable {
     private Date  end;
     private  List<Game> games;
     private  List<String> participants;
+    private Leaderboard leaderboard;
+
 
     public Tournament(String tournamentID, String name, String manager, Date end) {
         this();
@@ -26,6 +29,9 @@ public class Tournament implements Serializable {
         this.end = end;
         this.games = new ArrayList<>();
         this.participants = new ArrayList<>();
+        this.leaderboard = new Leaderboard();
+
+
     }
     public Tournament() {
 
@@ -67,6 +73,10 @@ public class Tournament implements Serializable {
         return games;
     }
 
+    public Leaderboard getLeaderboard() {
+        return leaderboard;
+    }
+
     public void setGames(List<Game> games) {
         this.games = games;
     }
@@ -87,6 +97,7 @@ public class Tournament implements Serializable {
         toReturn.put("end", end);
         toReturn.put("participants", participants.toString());
         toReturn.put("games", games);
+        toReturn.put("leaderboard", leaderboard);
         return toReturn;
     }
     public String toString() {
