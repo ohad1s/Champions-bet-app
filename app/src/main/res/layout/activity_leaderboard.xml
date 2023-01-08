@@ -59,7 +59,7 @@
     </LinearLayout>
 
         <ListView
-            android:id="@+id/table"
+            android:id="@+id/table__"
             android:gravity="center"
             android:layout_below="@id/table_header"
             android:layout_width="match_parent"

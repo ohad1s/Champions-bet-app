@@ -87,6 +87,25 @@ public class tournament_user_page extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            token = data.getStringExtra("token");
+            DocumentReference docRef = firebaseDatabase.collection("tournaments").document(token);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    tournament = documentSnapshot.toObject(Tournament.class);
+                    tv = findViewById(R.id.tour_name);
+                    tv.setText(tournament.getName());
+                    afterOnCreate();
+                }
+            });
+        }
+    }
+
+
     public void onClickLeaderboard(View view) {
         Intent intent = new Intent(tournament_user_page.this, ActivityLeaderboard.class);
         Bundle b = new Bundle();

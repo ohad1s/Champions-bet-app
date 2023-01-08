@@ -16,13 +16,6 @@
         android:theme="@style/Theme.Champions"
         tools:targetApi="31">
         <activity
-            android:name=".ActivityLeaderboard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".manager.games_list_view"
             android:exported="false">
             <meta-data
@@ -64,6 +57,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".DAL.ActivityLeaderboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".player.activity_game_player"
             android:exported="false">
