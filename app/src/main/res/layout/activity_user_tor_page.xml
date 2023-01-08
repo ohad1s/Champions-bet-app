@@ -26,6 +26,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        android:onClick="onClickLeaderboard"
         android:text="LeaderBoard" />
 
     <TextView

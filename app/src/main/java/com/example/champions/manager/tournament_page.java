@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.champions.DAL.ActivityLeaderboard;
 import com.example.champions.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -311,6 +312,15 @@ public class tournament_page extends AppCompatActivity {
         Intent intent = new Intent(tournament_page.this, games_list_view.class);
         Bundle b = new Bundle();
         b.putString("userid", user.getUserID());
+        b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+    }
+
+
+    public void onClickLeaderboard(View view) {
+        Intent intent = new Intent(tournament_page.this, ActivityLeaderboard.class);
+        Bundle b = new Bundle();
         b.putString("tournamentid", tournament.getTournamentID()); //tournament id
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);

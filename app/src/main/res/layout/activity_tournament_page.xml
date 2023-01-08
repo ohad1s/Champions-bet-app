@@ -89,6 +89,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:onClick="onClickLeaderboard"
         android:text="LeaderBoard" />
 
     <TextView

@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.champions.DAL.ActivityLeaderboard;
 import com.example.champions.DAL.BetsPlayerBaseAdapter;
 import com.example.champions.R;
+import com.example.champions.manager.tournament_page;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -83,6 +85,14 @@ public class tournament_user_page extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public void onClickLeaderboard(View view) {
+        Intent intent = new Intent(tournament_user_page.this, ActivityLeaderboard.class);
+        Bundle b = new Bundle();
+        b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
     }
 }
 

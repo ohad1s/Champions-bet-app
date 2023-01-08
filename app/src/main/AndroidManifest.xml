@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,6 +15,13 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.Champions"
         tools:targetApi="31">
+        <activity
+            android:name=".ActivityLeaderboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".manager.games_list_view"
             android:exported="false">
@@ -44,7 +50,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".player.JoinTorByToken"
             android:exported="false">
@@ -59,7 +64,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".player.activity_game_player"
             android:exported="false">
@@ -67,7 +71,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".player.game_list_view_player"
             android:exported="false">
@@ -75,7 +78,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".player.tournament_user_page"
             android:exported="false">
