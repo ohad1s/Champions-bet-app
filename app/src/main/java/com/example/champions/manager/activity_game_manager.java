@@ -111,7 +111,7 @@ public class activity_game_manager extends AppCompatActivity {
                 game = tournament.getGames().get(gameIndex);
                 int h = game.getHome_score();
                 int a = game.getAway_score();
-                String last_score = h + " " + game.getName() + " " + a;
+                String last_score = h + " " +"-" + " " + a;
                 score_up_tv.setText(last_score);
             }
         });

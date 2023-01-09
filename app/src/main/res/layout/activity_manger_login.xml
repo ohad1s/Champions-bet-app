@@ -17,17 +17,16 @@
 
     <Button
         android:id="@+id/login_manager"
-        android:layout_below="@+id/passwordManager"
-        android:onClick="onClickManagerLogin"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/passwordManager"
         android:layout_centerInParent="true"
-        android:textStyle="bold"
-        android:text="Login"
+        android:layout_marginTop="5dp"
         android:background="@drawable/button_bg_green"
+        android:onClick="onClickManagerLogin"
+        android:text="Login"
 
-         />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/register_manager"

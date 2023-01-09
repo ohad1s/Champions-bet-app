@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class ActivityLeaderboard extends AppCompatActivity {
     protected Tournament tournament;
     private FirebaseFirestore firebaseDatabase; // the data base we work on
     ListView listView; // list view of tournament
+    TextView title_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class ActivityLeaderboard extends AppCompatActivity {
     }
 
     public void afteronCreate() {
+        title_tv= (TextView) findViewById(R.id.title11);
+        title_tv.setText(tournament.getName());
         Leaderboard leaderboard_table = tournament.getLeaderboard();
         Map<String, Integer> table = leaderboard_table.getSortedTable();
         listView = (ListView) findViewById(R.id.table__);

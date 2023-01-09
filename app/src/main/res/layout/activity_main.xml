@@ -9,35 +9,44 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="0dp"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/logo_champions" />
 
     <Button
         android:id="@+id/manager"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickManager"
         android:text="@string/manager"
+        android:layout_centerHorizontal="true"
         android:textStyle="italic|bold"
         android:layout_below="@+id/Log_As"
         android:backgroundTint="#4CAF50"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"/>
+        android:shape="rectangle"
+        android:background="@drawable/green_btn"
+        android:layout_marginTop="30dp"/>
 
     <Button
         android:id="@+id/player"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickPlayer"
+        android:shape="rectangle"
+        android:layout_centerHorizontal="true"
         android:textStyle="italic|bold"
         android:text="@string/player"
         android:layout_below="@+id/manager"
         android:backgroundTint="#4CAF50"
+        android:background="@drawable/green_btn"
         android:textColor="@color/black"
         android:layout_marginTop="30dp" />
 
