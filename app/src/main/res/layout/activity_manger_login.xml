@@ -4,55 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".manager.MangerLoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/bg_backgroud" />
+
 
     <Button
         android:id="@+id/login_manager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordManager"
         android:onClick="onClickManagerLogin"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
         android:text="Login"
-        android:layout_below="@+id/passwordManager" />
+        android:background="@drawable/button_bg_green"
+
+         />
 
     <Button
         android:id="@+id/register_manager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:onClick="onClickManagerRegister"
-        android:text="Register"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/notSing"
-        />
+
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_green"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Register" />
 
     <EditText
         android:id="@+id/passwordManager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
         android:layout_below="@+id/userNameManager"
-        android:layout_marginTop="10dp"/>
+
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Password"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:textColorHint="#03DC0C"
+        android:inputType="textPassword"
+        />
 
     <EditText
         android:id="@+id/userNameManager"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:hint="Email"
-        android:inputType="textPersonName"
-         />
+        android:background="@color/white"
+        android:textColorHint="#03DC0C"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/notSing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/login_manager"
+        android:layout_centerInParent="true"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
         android:text="Unregistred?"
+        android:textColor="#03DC0C"
         android:textSize="30dp"
-        android:layout_centerHorizontal="true"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/login_manager" />
+        android:typeface="normal" />
 </RelativeLayout>
