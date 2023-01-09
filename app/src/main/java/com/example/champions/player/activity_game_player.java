@@ -62,25 +62,15 @@ public class activity_game_player extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
-                System.out.println("first!!!");
             }
         });
         docRef = firebaseDatabase.collection("tournaments").document(tourId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                System.out.println("second!!");
                 tournament = documentSnapshot.toObject(Tournament.class);
                 assert tournament != null;
-                System.out.println(gameIndex);
-                System.out.println(tournament.getGames());
                 game = tournament.getGames().get(gameIndex);
-                System.out.println(game);
-                if (game == null) {
-                    System.out.println("ZZZZZZZZZZZZZZ\n\n\nZZZZZZZZZZZZZZZZ");
-                } else {
-                    System.out.println("NO NULL");
-                }
                 game_name=game.getName();
                 afteronCreate();
             }
@@ -92,13 +82,6 @@ public class activity_game_player extends AppCompatActivity {
         game_name_tv = (TextView) findViewById(R.id.game_name);
         away_score_EditText = (EditText) findViewById(R.id.away_score);
         save_game_Button = (Button) findViewById(R.id.save_game);
-        if (game==null){
-            System.out.println("null game");
-        }
-        else{
-            game_name_tv.setText(game_name);
-        }
-
     }
 
     public void SaveGame(View view) throws ParseException {

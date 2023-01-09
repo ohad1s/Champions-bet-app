@@ -23,9 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import src.buisnesEntities.Bet;
 import src.buisnesEntities.Game;
 import src.buisnesEntities.Tournament;
 import src.buisnesEntities.User;
@@ -104,9 +106,9 @@ public class activity_game_manager extends AppCompatActivity {
         game.setHome_score(homeScore);
         game.setAway_score(awayScore);
         tournament.getGames().set(gameIndex, game);
-//
-//        HERE WE SHOULD ENTER A FUNCTION THAT CALCULATE ALL THE USERS SCORE ON THIS GAME!
-//
+
+        scoreUpdate(homeScore,awayScore);
+
         user.getMyTournaments().set(tournamentIndex, tournament);
 
         firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -142,6 +144,26 @@ public class activity_game_manager extends AppCompatActivity {
             }
         });
     }
+
+    private void scoreUpdate(int home_score, int away_score) {
+        ArrayList<Bet> bets= game.getBets();
+        for (Bet b : bets){
+            String userID = b.getBetID();
+            int h_score= b.getHome_score();
+            int a_score = b.getAway_score();
+            int score_to_add=0;
+            if (h_score==home_score && a_score==away_score){
+                score_to_add=3;
+            }
+            else{
+                if ((h_score-a_score)==(home_score-away_score)){
+                    score_to_add=1;
+                }
+            }
+            tournament.getLeaderboard().updateUserScore(userID,score_to_add);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

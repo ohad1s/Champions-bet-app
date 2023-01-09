@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,8 @@ public class tournament_page extends AppCompatActivity {
     private Button dateButton;
     private Bundle b;
     private int tournamentIndex;
+    private ImageButton wtsp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class tournament_page extends AppCompatActivity {
         tour_name_text = findViewById(R.id.tour_name);
         homeTeam = findViewById(R.id.homeTeam);
         wayTeam = findViewById(R.id.wayTeam);
+        wtsp =  (ImageButton) findViewById(R.id.img_w);
         initDatePicker();
         dateButton = findViewById(R.id.finalDate);
 //        dateButton = findViewById(R.id.finalDate);
