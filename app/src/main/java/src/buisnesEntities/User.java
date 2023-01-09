@@ -10,14 +10,20 @@ public class User {
     private String password;
     private String nickname;
     private List<Tournament> myTournaments;
+    private int updates;
 
 
-    public User(String userID, String email ,String password, String nickname){
+    public int getUpdates() {
+        return updates;
+    }
+
+    public User(String userID, String email , String password, String nickname){
         this.userID = userID;
         this.email=email;
         this.nickname=nickname;
         this.password=password;
         this.myTournaments = new ArrayList<Tournament>();
+        this.updates=0;
 
     }
     public User() {
@@ -62,7 +68,12 @@ public class User {
     public void setMyTournaments(List<Tournament> myTournaments) {
         this.myTournaments = myTournaments;
     }
-
+    public void update(){
+        this.updates+=1;
+    }
+    public void clearUpdates(){
+        this.updates=0;
+    }
 
     public HashMap<String, Object> toHashMap(){
         HashMap<String, Object> toReturn = new HashMap<>();
@@ -71,6 +82,7 @@ public class User {
         toReturn.put("nickname", nickname);
         toReturn.put("password", password);
         toReturn.put("myTournaments", myTournaments.toString());
+        toReturn.put("updates", updates);
         return toReturn;
     }
     public String toString() {

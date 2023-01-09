@@ -1,6 +1,8 @@
 package com.example.champions.player;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.champions.DAL.MyDialogFragment;
 import com.example.champions.DAL.TournamentMangerBaseAdapter;
 import com.example.champions.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,6 +58,14 @@ public class PlayerMainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 user = documentSnapshot.toObject(User.class);
+                assert user != null;
+                String msg = "Welcome back " + user.getNickname() + " You have " + user.getUpdates() + " new games to bet on!";
+                MyDialogFragment dialogFragment = MyDialogFragment.newInstance(msg);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                dialogFragment.show(fragmentTransaction, "dialog");
+                user.clearUpdates();
+                firebaseDatabase.collection("users").document(userId).set(user);
                 afteronCreate();
             }
         });
@@ -87,7 +98,7 @@ public class PlayerMainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i );
+                Log.i("COSTUM_LIST_VIEW", "Item is clicked @ i :: " + i);
                 Intent intent = new Intent(PlayerMainActivity.this, tournament_user_page.class);
                 Bundle b = new Bundle();
                 b.putString("userid", user.getUserID());
@@ -100,6 +111,7 @@ public class PlayerMainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

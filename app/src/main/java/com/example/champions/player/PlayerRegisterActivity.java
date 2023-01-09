@@ -72,7 +72,7 @@ public class PlayerRegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(PlayerRegisterActivity.this, "add succees", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayerRegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
                     //send userID
 //                    Intent intent = new Intent(PlayerRegisterActivity.this, PlayerMainActivity.class);
 //                    Bundle b = new Bundle();

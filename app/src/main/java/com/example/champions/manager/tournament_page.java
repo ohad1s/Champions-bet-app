@@ -29,8 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import src.buisnesEntities.Game;
 import src.buisnesEntities.Team;
@@ -193,6 +195,22 @@ public class tournament_page extends AppCompatActivity {
         homeTeam.setText("");
         wayTeam.setText("");
         dateButton.setText("Last Date for betting");
+        updateUsers();
+    }
+
+    private void updateUsers() {
+        List<String> users =  tournament.getParticipants();
+        for (String us : users){
+            DocumentReference docRef = firebaseDatabase.collection("users").document(us);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    user = documentSnapshot.toObject(User.class);
+                    assert user != null;
+                    user.update();
+                }
+            });
+        }
     }
 
     public void addToDB(Team home, Team way, Game game) {
