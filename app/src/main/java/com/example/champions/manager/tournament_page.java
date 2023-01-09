@@ -59,7 +59,7 @@ public class tournament_page extends AppCompatActivity {
         tour_name_text = findViewById(R.id.tour_name);
         homeTeam = findViewById(R.id.homeTeam);
         wayTeam = findViewById(R.id.wayTeam);
-        wtsp =  (ImageButton) findViewById(R.id.img_w);
+        wtsp = (ImageButton) findViewById(R.id.img_w);
         initDatePicker();
         dateButton = findViewById(R.id.finalDate);
 //        dateButton = findViewById(R.id.finalDate);
@@ -76,7 +76,7 @@ public class tournament_page extends AppCompatActivity {
 //                System.out.println("id: "+tournament);
 //                System.out.println(tournament.getGames());
 //            }
-            tournamentIndex=b.getInt("tournamentIndex");
+            tournamentIndex = b.getInt("tournamentIndex");
         }
         DocumentReference docRef = firebaseDatabase.collection("users").document(userId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -88,13 +88,14 @@ public class tournament_page extends AppCompatActivity {
             }
         });
     }
+
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
-        int year= cal.get(Calendar.YEAR);
-        int month= cal.get(Calendar.MONTH);
-        month+=1;
-        int day= cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day,month, year);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month += 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
     }
 
     private void initDatePicker() {
@@ -110,13 +111,14 @@ public class tournament_page extends AppCompatActivity {
         };
 
         Calendar cal = Calendar.getInstance();
-        int year= cal.get(Calendar.YEAR);
-        int month= cal.get(Calendar.MONTH);
-        int day= cal.get(Calendar.DAY_OF_MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
+
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + " " + day + " " + year;
     }
@@ -185,8 +187,8 @@ public class tournament_page extends AppCompatActivity {
 //        int lenIndex = dateButton.getText().toString().length();
 //        String date_to_format= dateButton.getText().toString().substring(0,3)+dateButton.getText().toString().substring(spaceIndex,lenIndex);
 //        Date f_date = formatter.parse(date_to_format);
-        Date f_date= String_to_Date(dateButton.getText().toString());
-        Game newGame = new Game(gameID, home, way, f_date );
+        Date f_date = String_to_Date(dateButton.getText().toString());
+        Game newGame = new Game(gameID, home, way, f_date);
         addToDB(home, way, newGame);
         homeTeam.setText("");
         wayTeam.setText("");
@@ -240,13 +242,14 @@ public class tournament_page extends AppCompatActivity {
             }
         });
     }
+
     private Date String_to_Date(String d) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         int spaceIndex = dateButton.getText().toString().indexOf(" ");
-        String month_to_format= getMonthNumber(dateButton.getText().toString().substring(0,spaceIndex));
-        String day_to_format= dateButton.getText().toString().substring(spaceIndex+1,spaceIndex+3);
-        String year_to_format= dateButton.getText().toString().substring(spaceIndex+4);
-        String date_to_format= year_to_format+"-"+month_to_format+"-"+day_to_format;
+        String month_to_format = getMonthNumber(dateButton.getText().toString().substring(0, spaceIndex));
+        String day_to_format = dateButton.getText().toString().substring(spaceIndex + 1, spaceIndex + 3);
+        String year_to_format = dateButton.getText().toString().substring(spaceIndex + 4);
+        String date_to_format = year_to_format + "-" + month_to_format + "-" + day_to_format;
         System.out.println(day_to_format);
         Date f_date = formatter.parse(date_to_format);
         return f_date;
@@ -281,6 +284,7 @@ public class tournament_page extends AppCompatActivity {
         }
         return "01";
     }
+
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
@@ -321,6 +325,14 @@ public class tournament_page extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void shareViaWhatsapp(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, tournament.getTournamentID());
+        sendIntent.setType("text/plain");
+        sendIntent.setPackage("com.whatsapp");
+        startActivity(sendIntent);
+    }
 
     public void onClickLeaderboard(View view) {
         Intent intent = new Intent(tournament_page.this, ActivityLeaderboard.class);
