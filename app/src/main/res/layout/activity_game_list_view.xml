@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/game_img"
-        android:layout_width="100dp"
-        android:layout_height="80dp" />
+        android:layout_width="65dp"
+        android:layout_height="65dp" />
 
     <TextView
         android:id="@+id/game_txt_view"
@@ -19,5 +19,5 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="My Text"
-        android:textSize="30dp" />
+        android:textSize="25dp" />
 </LinearLayout>

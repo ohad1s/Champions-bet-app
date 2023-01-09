@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
     tools:context=".DAL.ActivityLeaderboard">
 
 
@@ -23,7 +24,6 @@
         android:id="@+id/table_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:layout_below="@id/title"
         android:textStyle="bold"
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="Rank"
+            android:text="  Rank"
             android:textSize="30dp"
             android:gravity="start"/>
 
@@ -69,6 +69,6 @@
             android:layout_marginBottom="40dp"
             android:divider="@color/black"
             android:dividerHeight="2dp"
-            android:listSelector="@color/purple_200" />
+            android:listSelector="@color/white" />
 
     </RelativeLayout>

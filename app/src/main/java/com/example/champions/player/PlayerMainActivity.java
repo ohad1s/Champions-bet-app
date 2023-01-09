@@ -32,7 +32,7 @@ public class PlayerMainActivity extends AppCompatActivity {
     private Button JoinTorButton; // bottom to create a new tournament
     protected User user; // the user is connected
     private FirebaseFirestore firebaseDatabase; // the data base we work on
-    int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
+    int TournamentImg[] = {R.drawable.cup}; // img tournament
     ListView listView; // list view of tournament
 
     @Override

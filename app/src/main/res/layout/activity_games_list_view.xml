@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".manager.games_list_view">
+    tools:context=".manager.games_list_view"
+    android:background="@drawable/bg_color">
 
     <ListView
         android:id="@+id/MyGamesListView"
@@ -14,5 +15,5 @@
         android:layout_marginBottom="40dp"
         android:divider="@color/black"
         android:dividerHeight="2dp"
-        android:listSelector="@color/purple_200" />
+        android:listSelector="@color/white" />
 </RelativeLayout>

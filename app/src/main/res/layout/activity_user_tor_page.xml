@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".player.tournament_user_page">
+    tools:context=".player.tournament_user_page"
+    android:background="@drawable/bg_color">
 
     <TextView
         android:id="@+id/tour_name"

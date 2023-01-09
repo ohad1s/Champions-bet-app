@@ -71,9 +71,9 @@ public class ScoreAdapter extends BaseAdapter {
                         assert user != null;
                         String nickname= user.getNickname();
                         // Bind the data to the TextViews
-                        textView1.setText(String.valueOf(i+1));
+                        textView1.setText("  "+String.valueOf(i+1));
                         textView2.setText(nickname);
-                        textView3.setText(String.valueOf(score));
+                        textView3.setText(String.valueOf(score)+"  ");
                     }
                 });
                 break;
