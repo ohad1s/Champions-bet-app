@@ -39,6 +39,7 @@ public class activity_game_player extends AppCompatActivity {
     private TextView game_name_tv;
     private EditText away_score_EditText;
     private Button save_game_Button;
+    private TextView tvDate;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +81,18 @@ public class activity_game_player extends AppCompatActivity {
     public void afteronCreate() {
         home_score_EditText = (EditText) findViewById(R.id.home_score);
         game_name_tv = (TextView) findViewById(R.id.game_name);
+        game_name_tv.setText(game_name);
         away_score_EditText = (EditText) findViewById(R.id.away_score);
         save_game_Button = (Button) findViewById(R.id.save_game);
+        tvDate= (TextView) findViewById(R.id.game_date);
+        String date;
+        Date currentDate = new Date();
+        if (currentDate.after(game.getFinal_date())) {
+            date="Closed";
+        } else {
+            date= "Closed in: "+game.getFinal_date().toString();
+        }
+        tvDate.setText(date);
     }
 
     public void SaveGame(View view) throws ParseException {
@@ -105,6 +116,7 @@ public class activity_game_player extends AppCompatActivity {
             });
 
         }
+        onBackPressed();
     }
     @Override
     public void onBackPressed() {

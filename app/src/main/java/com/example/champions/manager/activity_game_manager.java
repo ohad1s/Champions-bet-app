@@ -47,6 +47,10 @@ public class activity_game_manager extends AppCompatActivity {
     private EditText away_score_EditText;
     private Button Done_Button;
     private TextView game_name_TextView_2;
+    private TextView score_up_tv;
+    private String userId = "hello"; // or other values
+    private String tourId = "hello"; // or other values
+    private String gameId = "hello"; // or other values
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +59,6 @@ public class activity_game_manager extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.finalDate);
         Bundle b = getIntent().getExtras();
-        String userId = "hello"; // or other values
-        String tourId = "hello"; // or other values
-        String gameId = "hello"; // or other values
         if (b != null) {
             tourId = b.getString("tournamentid");
             userId = b.getString("userid");
@@ -98,6 +99,19 @@ public class activity_game_manager extends AppCompatActivity {
         game_name_TextView_2 = (TextView) findViewById(R.id.GameEditName);
         game_name_TextView.setText(game.getName());
         game_name_TextView_2.setText(game.getName());
+        score_up_tv= (TextView) findViewById(R.id.last_score_null);
+        DocumentReference docRef = firebaseDatabase.collection("tournaments").document(tourId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                tournament = documentSnapshot.toObject(Tournament.class);
+                game = tournament.getGames().get(gameIndex);
+                int h=game.getHome_score();
+                int a=game.getAway_score();
+                String last_score= h +" "+game.getName()+" "+ a;
+                score_up_tv.setText(last_score);
+            }
+        });
     }
 
     public void SaveGame(View view) throws ParseException {
@@ -108,6 +122,51 @@ public class activity_game_manager extends AppCompatActivity {
         tournament.getGames().set(gameIndex, game);
 
         scoreUpdate(homeScore,awayScore);
+
+        user.getMyTournaments().set(tournamentIndex, tournament);
+
+        firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+//                    Intent intent = new Intent(activity_game_manager.this, games_list_view.class);
+//                    Bundle b = new Bundle();
+//                    b.putString("userid", user.getUserID());
+//                    b.putString("tournamentid", tournament.getTournamentID()); //tournament id
+//                    b.putInt("tournamentIndex", tournamentIndex);
+//                    intent.putExtras(b); //Put your id to your next Intent
+//                    startActivity(intent);
+//                    finish();
+                    onBackPressed();
+                }
+            }
+        });
+    }
+
+    public void DeleteMistake(View view) throws ParseException {
+        int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
+        int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
+        game.setHome_score(homeScore);
+        game.setAway_score(awayScore);
+        tournament.getGames().set(gameIndex, game);
+
+        scoreMistake(homeScore,awayScore);
 
         user.getMyTournaments().set(tournamentIndex, tournament);
 
@@ -158,6 +217,25 @@ public class activity_game_manager extends AppCompatActivity {
             else{
                 if ((h_score-a_score)==(home_score-away_score)){
                     score_to_add=1;
+                }
+            }
+            tournament.getLeaderboard().updateUserScore(userID,score_to_add);
+        }
+    }
+
+    private void scoreMistake(int home_score, int away_score) {
+        ArrayList<Bet> bets= game.getBets();
+        for (Bet b : bets){
+            String userID = b.getBetID();
+            int h_score= b.getHome_score();
+            int a_score = b.getAway_score();
+            int score_to_add=0;
+            if (h_score==home_score && a_score==away_score){
+                score_to_add=-3;
+            }
+            else{
+                if ((h_score-a_score)==(home_score-away_score)){
+                    score_to_add=-1;
                 }
             }
             tournament.getLeaderboard().updateUserScore(userID,score_to_add);

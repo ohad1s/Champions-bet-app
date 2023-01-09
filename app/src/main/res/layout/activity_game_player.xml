@@ -58,4 +58,21 @@
         android:gravity="center"
         android:onClick="SaveGame"
         android:text="Save" />
+
+    <TextView
+        android:id="@+id/game_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/save_game"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
+        android:text=" "
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textStyle="bold" />
+
+
 </RelativeLayout>
