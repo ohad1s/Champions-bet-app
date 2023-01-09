@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.champions.R;
+import com.example.champions.player.activity_game_player;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +52,7 @@ public class activity_game_manager extends AppCompatActivity {
     private String userId = "hello"; // or other values
     private String tourId = "hello"; // or other values
     private String gameId = "hello"; // or other values
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,7 @@ public class activity_game_manager extends AppCompatActivity {
 //            }
 //        });
     }
+
     public void afteronCreate() {
         game_name_TextView = (TextView) findViewById(R.id.game_name);
         home_score_EditText = (EditText) findViewById(R.id.home_score);
@@ -99,52 +102,57 @@ public class activity_game_manager extends AppCompatActivity {
         game_name_TextView_2 = (TextView) findViewById(R.id.GameEditName);
         game_name_TextView.setText(game.getName());
         game_name_TextView_2.setText(game.getName());
-        score_up_tv= (TextView) findViewById(R.id.last_score_null);
+        score_up_tv = (TextView) findViewById(R.id.last_score_null);
         DocumentReference docRef = firebaseDatabase.collection("tournaments").document(tourId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 tournament = documentSnapshot.toObject(Tournament.class);
                 game = tournament.getGames().get(gameIndex);
-                int h=game.getHome_score();
-                int a=game.getAway_score();
-                String last_score= h +" "+game.getName()+" "+ a;
+                int h = game.getHome_score();
+                int a = game.getAway_score();
+                String last_score = h + " " + game.getName() + " " + a;
                 score_up_tv.setText(last_score);
             }
         });
     }
 
     public void SaveGame(View view) throws ParseException {
-        int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
-        int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
-        game.setHome_score(homeScore);
-        game.setAway_score(awayScore);
-        tournament.getGames().set(gameIndex, game);
+        Date currentDate = new Date();
+        if (currentDate.before(game.getFinal_date())) {
+            Toast.makeText(activity_game_manager.this, "Game not yet played!", Toast.LENGTH_SHORT).show();
+        } else {
 
-        scoreUpdate(homeScore,awayScore);
+            int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
+            int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
+            game.setHome_score(homeScore);
+            game.setAway_score(awayScore);
+            tournament.getGames().set(gameIndex, game);
 
-        user.getMyTournaments().set(tournamentIndex, tournament);
+            scoreUpdate(homeScore, awayScore);
 
-        firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+            user.getMyTournaments().set(tournamentIndex, tournament);
+
+            firebaseDatabase.collection("games").document(game.getGameID()).set(game).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
-        firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+            });
+            firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(activity_game_manager.this, "add succees", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
-        firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
+            });
+            firebaseDatabase.collection("users").document(user.getUserID()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
 //                    Intent intent = new Intent(activity_game_manager.this, games_list_view.class);
 //                    Bundle b = new Bundle();
 //                    b.putString("userid", user.getUserID());
@@ -153,20 +161,25 @@ public class activity_game_manager extends AppCompatActivity {
 //                    intent.putExtras(b); //Put your id to your next Intent
 //                    startActivity(intent);
 //                    finish();
-                    onBackPressed();
+                        onBackPressed();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public void DeleteMistake(View view) throws ParseException {
+        Date currentDate = new Date();
+        if (currentDate.before(game.getFinal_date())) {
+            Toast.makeText(activity_game_manager.this, "Game not yet played!", Toast.LENGTH_SHORT).show();
+        } else {
         int homeScore = Integer.parseInt(home_score_EditText.getText().toString());
         int awayScore = Integer.parseInt(away_score_EditText.getText().toString());
         game.setHome_score(homeScore);
         game.setAway_score(awayScore);
         tournament.getGames().set(gameIndex, game);
 
-        scoreMistake(homeScore,awayScore);
+        scoreMistake(homeScore, awayScore);
 
         user.getMyTournaments().set(tournamentIndex, tournament);
 
@@ -203,42 +216,41 @@ public class activity_game_manager extends AppCompatActivity {
             }
         });
     }
+    }
 
     private void scoreUpdate(int home_score, int away_score) {
-        ArrayList<Bet> bets= game.getBets();
-        for (Bet b : bets){
+        ArrayList<Bet> bets = game.getBets();
+        for (Bet b : bets) {
             String userID = b.getBetID();
-            int h_score= b.getHome_score();
+            int h_score = b.getHome_score();
             int a_score = b.getAway_score();
-            int score_to_add=0;
-            if (h_score==home_score && a_score==away_score){
-                score_to_add=3;
-            }
-            else{
-                if ((h_score-a_score)==(home_score-away_score)){
-                    score_to_add=1;
+            int score_to_add = 0;
+            if (h_score == home_score && a_score == away_score) {
+                score_to_add = 3;
+            } else {
+                if ((h_score - a_score) == (home_score - away_score)) {
+                    score_to_add = 1;
                 }
             }
-            tournament.getLeaderboard().updateUserScore(userID,score_to_add);
+            tournament.getLeaderboard().updateUserScore(userID, score_to_add);
         }
     }
 
     private void scoreMistake(int home_score, int away_score) {
-        ArrayList<Bet> bets= game.getBets();
-        for (Bet b : bets){
+        ArrayList<Bet> bets = game.getBets();
+        for (Bet b : bets) {
             String userID = b.getBetID();
-            int h_score= b.getHome_score();
+            int h_score = b.getHome_score();
             int a_score = b.getAway_score();
-            int score_to_add=0;
-            if (h_score==home_score && a_score==away_score){
-                score_to_add=-3;
-            }
-            else{
-                if ((h_score-a_score)==(home_score-away_score)){
-                    score_to_add=-1;
+            int score_to_add = 0;
+            if (h_score == home_score && a_score == away_score) {
+                score_to_add = -3;
+            } else {
+                if ((h_score - a_score) == (home_score - away_score)) {
+                    score_to_add = -1;
                 }
             }
-            tournament.getLeaderboard().updateUserScore(userID,score_to_add);
+            tournament.getLeaderboard().updateUserScore(userID, score_to_add);
         }
     }
 
@@ -251,10 +263,10 @@ public class activity_game_manager extends AppCompatActivity {
     private Date String_to_Date(String d) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         int spaceIndex = dateButton.getText().toString().indexOf(" ");
-        String month_to_format= getMonthNumber(dateButton.getText().toString().substring(0,spaceIndex));
-        String day_to_format= dateButton.getText().toString().substring(spaceIndex+1,spaceIndex+3);
-        String year_to_format= dateButton.getText().toString().substring(spaceIndex+4);
-        String date_to_format= year_to_format+"-"+month_to_format+"-"+day_to_format;
+        String month_to_format = getMonthNumber(dateButton.getText().toString().substring(0, spaceIndex));
+        String day_to_format = dateButton.getText().toString().substring(spaceIndex + 1, spaceIndex + 3);
+        String year_to_format = dateButton.getText().toString().substring(spaceIndex + 4);
+        String date_to_format = year_to_format + "-" + month_to_format + "-" + day_to_format;
         System.out.println(day_to_format);
         Date f_date = formatter.parse(date_to_format);
         return f_date;
@@ -289,6 +301,7 @@ public class activity_game_manager extends AppCompatActivity {
         }
         return "01";
     }
+
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
@@ -306,9 +319,9 @@ public class activity_game_manager extends AppCompatActivity {
         };
 
         Calendar cal = Calendar.getInstance();
-        int year= cal.get(Calendar.YEAR);
-        int month= cal.get(Calendar.MONTH);
-        int day= cal.get(Calendar.DAY_OF_MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
@@ -351,7 +364,7 @@ public class activity_game_manager extends AppCompatActivity {
 
 
     public void update_final_date(View view) throws ParseException {
-        Date f_date= String_to_Date(dateButton.getText().toString());
+        Date f_date = String_to_Date(dateButton.getText().toString());
         tournament.getGames().get(gameIndex).setFinal_date(f_date);
         firebaseDatabase.collection("tournaments").document(tournament.getTournamentID()).set(tournament).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
