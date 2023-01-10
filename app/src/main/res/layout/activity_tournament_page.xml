@@ -44,6 +44,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
+        android:fontFamily="@font/functions_font"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:hint="Home team" />
@@ -51,6 +52,7 @@
     <EditText
         android:id="@+id/wayTeam"
         android:layout_width="match_parent"
+        android:fontFamily="@font/functions_font"
         android:layout_height="wrap_content"
         android:layout_below="@id/homeTeam"
         android:layout_marginTop="10dp"

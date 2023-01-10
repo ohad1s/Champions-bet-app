@@ -52,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:divider="@color/black"
         android:dividerHeight="2dp"
-        android:listSelector="@color/white"
+        android:listSelector="#FC625B"
         android:id="@+id/MyTournamentListView"
         android:layout_marginBottom="40dp" />
 

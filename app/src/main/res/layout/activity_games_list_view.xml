@@ -15,5 +15,5 @@
         android:layout_marginBottom="40dp"
         android:divider="@color/black"
         android:dividerHeight="2dp"
-        android:listSelector="@color/white" />
+        android:listSelector="#5E8833" />
 </RelativeLayout>

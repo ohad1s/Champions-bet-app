@@ -28,12 +28,13 @@
         android:layout_marginTop="30dp"
         android:hint="Token"
         android:textColor="@color/white"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_below="@id/Join"
         />
 
     <Button
         android:id="@+id/enter_token"
+        android:textColorHint="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/your_token_here"
