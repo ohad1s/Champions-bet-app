@@ -23,7 +23,7 @@
         android:layout_centerInParent="true"
         android:textStyle="bold"
         android:text="Login"
-        android:background="@drawable/button_bg_green"
+        android:background="@drawable/button_bg_yellow"
 
         />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_bg_green"
+        android:background="@drawable/button_bg_yellow"
         android:gravity="center"
         android:textStyle="bold"
         android:text="Register"

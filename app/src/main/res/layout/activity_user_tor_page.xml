@@ -28,6 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="30dp"
+        android:background="@drawable/button_bg_white"
         android:gravity="center"
         android:onClick="onClickLeaderboard"
         android:text="LeaderBoard" />

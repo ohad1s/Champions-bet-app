@@ -35,21 +35,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tournamentName"
         android:layout_marginTop="30dp"
-        android:text="Final Date"
-        android:textSize="20dp"
+        android:background="@drawable/button_bg_white"
+        android:inputType="date"
         android:onClick="openDatePicker"
-        android:inputType="date"/>
+        android:text="Final Date"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/doneButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/finalDate"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_white"
         android:gravity="center"
-        android:text="Done!"
-        android:onClick="onClickDoneButton"/>
+        android:onClick="onClickDoneButton"
+        android:text="Done!" />
 
 </RelativeLayout>

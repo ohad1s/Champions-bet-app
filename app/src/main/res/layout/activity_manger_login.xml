@@ -22,7 +22,7 @@
         android:layout_below="@+id/passwordManager"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/button_bg_green"
+        android:background="@drawable/button_bg_yellow"
         android:onClick="onClickManagerLogin"
         android:text="Login"
 
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_bg_green"
+        android:background="@drawable/button_bg_yellow"
         android:gravity="center"
         android:textStyle="bold"
         android:text="Register" />

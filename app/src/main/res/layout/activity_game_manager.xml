@@ -42,6 +42,8 @@
         android:layout_marginTop="30dp"
         android:text="Edit Final Date"
         android:textSize="20dp"
+        android:background="@drawable/button_bg_white"
+
         android:onClick="openDatePicker"
         android:inputType="date"/>
 
@@ -51,6 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/finalDate"
         android:layout_marginTop="30dp"
+        android:background="@drawable/button_bg_white"
+
         android:text="UPDATE"
         android:textSize="20dp"
         android:onClick="update_final_date"
@@ -108,6 +112,8 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:background="@drawable/button_bg_white"
+
         android:onClick="SaveGame"
         android:text="Enter final score" />
 
@@ -116,6 +122,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/save_game"
+        android:background="@drawable/button_bg_white"
+
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"

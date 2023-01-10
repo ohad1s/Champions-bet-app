@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcomeManager"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_white"
         android:text="+ Create a New Competition +"
         android:layout_centerVertical="true"
         />

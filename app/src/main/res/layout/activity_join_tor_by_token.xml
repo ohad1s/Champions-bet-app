@@ -42,6 +42,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:background="@drawable/button_bg_white"
         android:onClick="onClickEnterButton"
         android:text="Enter" />
 

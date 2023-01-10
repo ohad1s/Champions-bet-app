@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/manager"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:onClick="onClickManager"
         android:text="@string/manager"
@@ -37,7 +37,7 @@
 
     <Button
         android:id="@+id/player"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:onClick="onClickPlayer"
         android:shape="rectangle"
