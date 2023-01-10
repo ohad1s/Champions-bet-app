@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".manager.activity_game_manager"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/stadium">
 
     <TextView
         android:id="@+id/EditGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit:"
+        android:fontFamily="@font/functions_font"
+        android:textColor="@color/white"
         android:layout_marginTop="10dp"
         android:textSize="25dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -25,6 +27,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="       "
+        android:fontFamily="@font/titles_font"
+        android:textColor="@color/white"
         android:textSize="32dp"
         android:gravity="center"
         android:layout_marginTop="15dp"
@@ -124,6 +128,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_below="@id/mistake_game"
@@ -136,6 +141,7 @@
         android:layout_height="wrap_content"
         android:text="                                     "
         android:textSize="15dp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_centerHorizontal="true"

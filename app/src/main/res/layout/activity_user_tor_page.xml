@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".player.tournament_user_page"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/grass2">
 
     <TextView
         android:id="@+id/tour_name"
+        android:textColor="@color/white"
+        android:fontFamily="@font/titles_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="    "
@@ -36,6 +38,8 @@
         android:layout_height="wrap_content"
         android:text="Games to bet on:"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="@font/little_title"
         android:layout_marginTop="20dp"
         android:textSize="30dp"
         android:gravity="center"

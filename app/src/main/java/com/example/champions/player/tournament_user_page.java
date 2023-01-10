@@ -34,7 +34,7 @@ public class tournament_user_page extends AppCompatActivity {
     Tournament tournament;
     String token;
     ListView listView;
-    int[] ballImg = {R.drawable.ball_icon};
+    int[] ballImg = {R.drawable.cupp};
     TextView tv;
 
     protected void onCreate(Bundle savedInstanceState) {

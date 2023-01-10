@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".player.JoinTorByToken"
-    android:background="@drawable/bg_color"
+    android:background="@drawable/grass"
     >
 
     <TextView
@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Enter your Token here:"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/functions_font"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="30dp"
         android:hint="Token"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_below="@id/Join"
         />

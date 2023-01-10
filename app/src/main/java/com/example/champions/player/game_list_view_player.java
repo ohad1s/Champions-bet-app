@@ -27,7 +27,7 @@ public class game_list_view_player extends AppCompatActivity {
     protected Tournament tournament; // the user is connected
     protected int tournamentIndex;
     private FirebaseFirestore firebaseDatabase; // the data base we work on
-    int TournamentImg[] = {R.drawable.tournament_image}; // img tournament
+    int TournamentImg[] = {R.drawable.cuppp}; // img tournament
     ListView listView; // list view of tournament
     @Override
     protected void onCreate(Bundle savedInstanceState) {

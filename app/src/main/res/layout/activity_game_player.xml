@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".player.activity_game_player"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/stadium">
 
 
 

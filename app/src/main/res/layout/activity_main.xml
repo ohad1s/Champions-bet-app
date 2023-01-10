@@ -55,6 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_as"
+        android:textColor="@color/black"
+        android:fontFamily="@font/titles_font"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textStyle="italic|bold"
         android:visibility="visible"

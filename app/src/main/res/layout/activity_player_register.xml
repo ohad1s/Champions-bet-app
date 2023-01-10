@@ -7,6 +7,19 @@
     tools:context=".player.PlayerRegisterActivity"
     android:background="@drawable/bg_color">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_champions" />
+
     <EditText
         android:id="@+id/regEmailPlayer"
         android:layout_width="match_parent"
@@ -36,13 +49,16 @@
 
     <Button
         android:id="@+id/register_player_2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/regNicknamePlayer"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:backgroundTint="#4CAF50"
+        android:background="@drawable/green_btn"
+        android:textColor="@color/black"
         android:onClick="onClickPlayerRegister_2"
-        android:text="Register" />
+        android:text="      Register      " />
 </RelativeLayout>

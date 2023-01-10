@@ -31,7 +31,7 @@ public class ManagerMainActivity extends AppCompatActivity {
     private Button createANewTournament; // bottom to create a new tournament
     protected User user; // the user is connected
     private FirebaseFirestore firebaseDatabase; // the data base we work on
-    int TournamentImg[] = {R.drawable.cup2}; // img tournament
+    int TournamentImg[] = {R.drawable.cuppp}; // img tournament
     ListView listView; // list view of tournament
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".manager.tournament_page"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/grass2">
 
     <TextView
         android:id="@+id/tour_name"
@@ -13,6 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="    "
+        android:textColor="@color/white"
+        android:fontFamily="@font/titles_font"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -26,6 +28,8 @@
         android:layout_below="@id/tour_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/functions_font"
         android:text="Add Game:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="25dp"
@@ -40,6 +44,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
+        android:textColor="@color/white"
         android:hint="Home team" />
 
     <EditText
@@ -49,6 +54,7 @@
         android:layout_below="@id/homeTeam"
         android:layout_marginTop="10dp"
         android:gravity="center"
+        android:textColor="@color/white"
         android:hint="AwayTeam" />
 
     <Button
@@ -110,6 +116,8 @@
             android:layout_height="wrap_content"
             android:text="Share Tournament Token:"
             android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/functions_font"
             android:layout_marginStart="20dp"
             android:textSize="20dp"
             />
@@ -120,6 +128,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
+            android:background="@drawable/whatsapp_png_image_9"
             android:onClick="shareViaWhatsapp"
             android:scaleType="fitCenter" />
     </LinearLayout>
@@ -129,6 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/token_whatsup"
+        android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:longClickable="true"

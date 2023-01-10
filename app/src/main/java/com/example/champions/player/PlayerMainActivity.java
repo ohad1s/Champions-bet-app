@@ -63,8 +63,10 @@ public class PlayerMainActivity extends AppCompatActivity {
                 MyDialogFragment dialogFragment = MyDialogFragment.newInstance(msg);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                dialogFragment.show(fragmentTransaction, "dialog");
-                user.clearUpdates();
+                if (user.getUpdates() > 0) {
+                    dialogFragment.show(fragmentTransaction, "dialog");
+                    user.clearUpdates();
+                }
                 firebaseDatabase.collection("users").document(userId).set(user);
                 afteronCreate();
             }

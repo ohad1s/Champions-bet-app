@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".manager.ManagerMainActivity"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/ultras">
 
     <TextView
         android:id="@+id/welcomeManager"
+        android:fontFamily="@font/names_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome "
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +33,11 @@
 
     <TextView
         android:id="@+id/MyComp"
+        android:fontFamily="@font/little_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Competitions:"
+        android:textColor="@color/black"
         android:layout_below="@+id/CreateBtn"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -47,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:divider="@color/black"
         android:dividerHeight="2dp"
-        android:listSelector="@color/purple_200"
+        android:listSelector="@color/white"
         android:id="@+id/MyTournamentListView"
         android:layout_marginBottom="40dp" />
 

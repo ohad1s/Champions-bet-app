@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".manager.CreateNewTournament"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/grass">
 
     <TextView
         android:id="@+id/createNewTournament"
@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:text="Create New Tournament"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/functions_font"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
