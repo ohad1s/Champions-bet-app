@@ -3,22 +3,40 @@ package src.buisnesEntities;
 import java.io.Serializable;
 import java.util.HashMap;
 
+// This class represents a bet made by a player on a game
 public class Bet implements Serializable {
-    private  String betID; //Should be a player ID
+    // ID of the player that made the bet
+    private String betID;
+    // ID of the game the bet is placed on
     private String gameId;
+    // Score prediction name, a string composed of home_score and away_score
     private String name;
+    // predicted home team score
     private int home_score;
+    //predicted away team score
     private int away_score;
 
-    public Bet(String betID, int h, int a,   String game){
+    // default constructor
+    public Bet() {
+    }
+
+    /**
+     * constructor to create a new bet
+     * @param betID
+     * @param h     home team
+     * @param a     away team
+     * @param game  gameID
+     */
+    public Bet(String betID, int h, int a, String game) {
         this.betID = betID;
         this.gameId = game;
         this.home_score = h;
         this.away_score = a;
-        this.name= home_score+" - "+away_score;
+        //create name of the score prediction
+        this.name = home_score + " - " + away_score;
     }
-    public Bet(){}
 
+    // getters and setters for all class properties
     public String getName() {
         return name;
     }
@@ -55,7 +73,8 @@ public class Bet implements Serializable {
         this.away_score = away_score;
     }
 
-    public HashMap<String, Object> toHashMap(){
+    // Method to convert the object to a hashmap
+    public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> toReturn = new HashMap<>();
         toReturn.put("betID", betID);
         toReturn.put("gameId", gameId);
@@ -64,6 +83,8 @@ public class Bet implements Serializable {
         toReturn.put("name", this.name);
         return toReturn;
     }
+
+    // Method to convert the object to a string
     public String toString() {
         return betID;
     }
