@@ -8,8 +8,8 @@
     >
     
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/manager_tournament_img"/>
     <TextView
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_marginLeft="20dp"
         android:textSize="30dp"
         android:fontFamily="@font/little_title"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="My Text"/>
 
 </LinearLayout>

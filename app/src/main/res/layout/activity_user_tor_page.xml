@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".player.tournament_user_page"
-    android:background="@drawable/grass2">
+    android:background="@drawable/grass">
 
     <TextView
         android:id="@+id/tour_name"
