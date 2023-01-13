@@ -1,11 +1,19 @@
 package src.buisnesEntities;
 
+import android.os.Build;
+
 import com.example.champions.DAL.MyComparator;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 // This class represents a leaderboard containing scores of players
 public class Leaderboard implements Serializable {
@@ -21,6 +29,20 @@ public class Leaderboard implements Serializable {
 
     // Getter for the sorted table
     public Map<String, Integer> getSortedTable() {
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(sortedTable.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        sortedTable.clear();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedTable.put(entry.getKey(), entry.getValue());
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            sortedTable = sortedTable.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        }
         return sortedTable;
     }
 
@@ -36,6 +58,7 @@ public class Leaderboard implements Serializable {
 
     /**
      * Update the score of a specific user
+     *
      * @param userID
      * @param scoreToAdd how many points to add
      */
